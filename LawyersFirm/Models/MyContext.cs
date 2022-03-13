@@ -27,5 +27,14 @@ namespace LawyersFirm.Models
         public DbSet<AttorneyAward> AttorneyAwards { get; set; }
         public DbSet<AttorneyPractice> AttorneyPractices { get; set; }
         public DbSet<AttorneyContact> AttorneyContacts { get; set; }
+
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<PriceContent> PriceContents { get; set; }
+        public DbSet<Price> Prices { get; set; }
+        public DbSet<Practice> Practices { get; set; }
+        public DbSet<PriceToPractice> PriceToPractices { get; set; }
+
+
     }
 }

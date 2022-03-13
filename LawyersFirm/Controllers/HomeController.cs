@@ -1,5 +1,7 @@
 ﻿using LawyersFirm.Models;
+using LawyersFirm.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,18 +13,27 @@ namespace LawyersFirm.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly MyContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(MyContext db)
         {
-            _logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeVM home = new HomeVM
+            {
+                Slider = db.Sliders.Include(i => i.SliderImages.OrderByDescending(f => f.Order)).First(),
+                FirmInfo = db.FirmInfos.Include(i => i.InfoDescs).Include(f => f.OfficeImages).First(),
+                Attorneys = db.Attorneys.Include(k => k.AttorneyContacts).ToList(),
+                Advantage = db.Advantages.Include(a => a.AdvantageDescs).First(),
+                Testimonials = db.Testimonials.ToList()
+            };
+            return View(home);
         }
 
+       
         
     }
 }

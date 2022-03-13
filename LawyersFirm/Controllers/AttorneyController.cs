@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LawyersFirm.Models;
+using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +11,26 @@ namespace LawyersFirm.Controllers
 {
     public class AttorneyController : Controller
     {
-        public IActionResult AllAttorney()
+        private readonly MyContext db;
+
+        public AttorneyController(MyContext db)
         {
-            return View();
+            this.db = db;
+        }
+        public async Task<IActionResult> AllAttorney()
+        {
+            List<Attorney> attorneys = await db.Attorneys.Include(a=>a.AttorneyContacts).ToListAsync();
+            return View(attorneys);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null) id = db.Attorneys.First().Id;
+            Attorney attorney = await db.Attorneys.Include(i=>i.AttorneyAwards).Include(i=>i.AttorneyContacts).Include(i=>i.AttorneyPractices).FirstOrDefaultAsync(i => i.Id == id);
+
+
+
+            return View(attorney);
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿		<!-- TOP IMAGE -->
-<div class="page-head " style="background-image:url(../assets/images/top-bkgs/lawyers.jpg);">
+﻿@using LawyersFirm.Models.DbTables
+@model List<Attorney>	
+
+	<!-- TOP IMAGE -->
+<div class="page-head" style="background-image:url(../assets/images/top-bkgs/lawyers.jpg);">
     <div class="inner-desc">
         <div class="container">
             <h1 class="page-title">Attorneys</h1>
@@ -14,83 +17,24 @@
     <section class="section-holder margin-b32">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-4.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Founder</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Sarah Barrett</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-                        </ul>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="lawyer-holder lawyer-3col">
+                            <a asp-action="Details" asp-controller="Attorney" asp-route-id="@item.Id"><img src="~/assets/images/team/@item.Image" class="img-fluid" alt=""></a>
+                            <div class="lawyer-position">@item.Jobname</div>
+                            <h2 class="lawyer-title"><a asp-action="Details" asp-controller="Attorney" asp-route-id="@item.Id">@item.Fullname</a></h2>
+                            <div class="lawyer-excerpt">@(item.Biography!=null && item.Biography.Length>135 ? item.Biography.Substring(0,135): item.Biography )</div>
+                            <ul class="lawyer-social">
+                                <li><a href="@item.AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==item.Id).Twitter" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="@item.AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==item.Id).Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="@item.AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==item.Id).Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-6.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Senior Partner</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Mike Holmes</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-1.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Lawyer</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Teresa Perkins</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-5.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Legal Advisor</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Samuel Johnson</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-2.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Lawyer</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Ellen Moore</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-3.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Legal Assistant</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Austin Harper</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+                }
+
+                
             </div>
             <!-- /row -->
         </div>

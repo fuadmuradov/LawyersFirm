@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LawyersFirm.Models;
+using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +11,26 @@ namespace LawyersFirm.Controllers
 {
     public class PracticeController : Controller
     {
-        public IActionResult AllPractices()
+        private readonly MyContext db;
+
+        public PracticeController(MyContext db)
         {
-            return View();
+            this.db = db;
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> AllPractices()
         {
-            return View();
+            List<Practice> practice= await db.Practices.ToListAsync();
+
+            return View(practice);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) id = db.Practices.First().Id;
+            Practice practice = await db.Practices.FirstOrDefaultAsync(i => i.Id == id);
+            ViewBag.Practices = await db.Practices.ToListAsync();
+            return View(practice);
         }
     }
 }

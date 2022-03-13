@@ -27,64 +27,29 @@
             <div class="exit-mobile"> <span class="icon-bar1"></span> <span class="icon-bar2"></span></div>
             <ul class="menu-mobile">
                 <li class="menu-item menu-item-has-children current-menu-item">
-                    <a href="index.html">Home</a>
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                 
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="About" asp-action="About">Pages</a>
                     <ul class="sub-menu">
-                        <li class="menu-item current-menu-item"><a href="index.html">Home 1</a></li>
-                        <li class="menu-item"><a href="home-2.html">Home 2</a></li>
-                        <li class="menu-item"><a href="home-3.html">Home 3</a></li>
-                        <li class="menu-item"><a href="home-4.html">Home 4</a></li>
-                        <li class="menu-item"><a href="home-video.html">Home Video</a></li>
-                        <li class="menu-item"><a href="top-header-2.html">Top Header 2</a></li>
-                        <li class="menu-item"><a href="top-header-3.html">Top Header 3</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="About">About Us</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Pricing">Pricing</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Faq">FAQ</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Testimonial">Testimonials</a></li>
                     </ul>
                 </li>
                 <li class="menu-item menu-item-has-children">
-                    <a href="#">Pages</a>
+                    <a asp-controller="Practice" asp-action="AllPractice">Practice Areas</a>
                     <ul class="sub-menu">
-                        <li class="menu-item"><a href="about-me.html">About Me</a></li>
-                        <li class="menu-item"><a href="about-us.html">About Us</a></li>
-                        <li class="menu-item"><a href="about-us-2.html">About Us 2</a></li>
-                        <li class="menu-item"><a href="pricing.html">Pricing</a></li>
-                        <li class="menu-item"><a href="gallery-1.html">Gallery</a></li>
-                        <li class="menu-item"><a href="faq.html">FAQ</a></li>
-                        <li class="menu-item"><a href="testimonials.html">Testimonials</a></li>
+                      
+                        <li class="menu-item"><a asp-controller="Practice" asp-action="Details">Single Practice</a></li>
                     </ul>
                 </li>
                 <li class="menu-item menu-item-has-children">
-                    <a href="practice-areas.html">Practice Areas</a>
+                    <a asp-controller="Attorney" asp-action="AllAttorney">Attorneys</a>
                     <ul class="sub-menu">
-                        <li class="menu-item menu-item-has-children">
-                            <a href="practice-areas.html">Practice v1</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="practice-areas-2-cols.html">Practice v1 2 Cols</a></li>
-                                <li class="menu-item"><a href="practice-areas-3-cols.html">Practice v1 3 Cols</a></li>
-                                <li class="menu-item"><a href="practice-areas.html">Practice v1 4 Cols</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item menu-item-has-children">
-                            <a href="practice-areas-v2-3-cols.html">Practice v2</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="practice-areas-v2-3-cols.html">Practice v2 3 Cols</a></li>
-                                <li class="menu-item"><a href="practice-areas-v2-4-cols.html">Practice v2 4 Cols</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item menu-item-has-children">
-                            <a href="practice-image-3-cols.html">Practice Image</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="practice-image-3-cols.html">Practice Image 3 Cols</a></li>
-                                <li class="menu-item"><a href="practice-image-4-cols.html">Practice Image 4 Cols</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item"><a href="practice-single-page.html">Single Practice</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item menu-item-has-children">
-                    <a href="attorneys.html">Attorneys</a>
-                    <ul class="sub-menu">
-                        <li class="menu-item"><a href="attorneys-2-cols.html">Attorneys 2 Cols</a></li>
-                        <li class="menu-item"><a href="attorneys.html">Attorneys 3 Cols</a></li>
-                        <li class="menu-item"><a href="attorneys-4-cols.html">Attorneys 4 Cols</a></li>
-                        <li class="menu-item"><a href="attorneys-single-page.html">Single Attorney</a></li>
+                        <li class="menu-item"><a asp-controller="Attorney" asp-action="Details">Single Attorney</a></li>
                     </ul>
                 </li>
                 <li class="menu-item menu-item-has-children">
@@ -97,23 +62,14 @@
                     </ul>
                 </li>
                 <li class="menu-item menu-item-has-children">
-                    <a href="blog.html">Blog</a>
+                    <a asp-controller="Blog" asp-action="AllBlog">Blog</a>
                     <ul class="sub-menu">
-                        <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
-                        <li class="menu-item"><a href="blog-classic.html">Blog Classic</a></li>
-                        <li class="menu-item"><a href="blog.html">Blog Grid 2 Cols</a></li>
-                        <li class="menu-item"><a href="blog-grid-3-cols.html">Blog Grid 3 Cols</a></li>
-                        <li class="menu-item"><a href="blog-full-width.html">Blog Full Width</a></li>
-                        <li class="menu-item"><a href="blog-single-post.html">Blog Single Post</a></li>
+                         <li class="menu-item"><a asp-controller="Blog" asp-action="Details">Blog Single Post</a></li>
                     </ul>
                 </li>
                 <li class="menu-item menu-item-has-children">
-                    <a href="contact.html">Contact</a>
-                    <ul class="sub-menu">
-                        <li class="menu-item"><a href="contact.html">Contact 1</a></li>
-                        <li class="menu-item"><a href="contact-2.html">Contact 2</a></li>
-                        <li class="menu-item"><a href="contact-3.html">Contact 3</a></li>
-                    </ul>
+                    <a asp-controller="Contact" asp-action="Contactt">Contact</a>
+                   
                 </li>
             </ul>
         </div>
@@ -145,64 +101,28 @@
             <div class="nav-holder nav-holder-1">
                 <ul class="menu-nav  menu-nav-1">
                     <li class="menu-item menu-item-has-children current-menu-item">
-                        <a href="index.html">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        
+                    </li>
+                    <li class="menu-item menu-item-has-children">
+                        <a asp-controller="About" asp-action="About">Pages</a>
                         <ul class="sub-menu">
-                            <li class="menu-item current-menu-item"><a href="index.html">Home 1</a></li>
-                            <li class="menu-item"><a href="home-2.html">Home 2</a></li>
-                            <li class="menu-item"><a href="home-3.html">Home 3</a></li>
-                            <li class="menu-item"><a href="home-4.html">Home 4</a></li>
-                            <li class="menu-item"><a href="home-video.html">Home Video</a></li>
-                            <li class="menu-item"><a href="top-header-2.html">Top Header 2</a></li>
-                            <li class="menu-item"><a href="top-header-3.html">Top Header 3</a></li>
+                            <li class="menu-item"><a asp-controller="About" asp-action="About">About Us</a></li>
+                            <li class="menu-item"><a asp-controller="About" asp-action="Pricing">Pricing</a></li>
+                            <li class="menu-item"><a asp-controller="About" asp-action="Faq">FAQ</a></li>
+                            <li class="menu-item"><a asp-controller="About" asp-action="Testimonial">Testimonials</a></li>
                         </ul>
                     </li>
                     <li class="menu-item menu-item-has-children">
-                        <a href="#">Pages</a>
+                        <a asp-controller="Practice" asp-action="AllPractices">Practice Areas</a>
                         <ul class="sub-menu">
-                            <li class="menu-item"><a href="about-me.html">About Me</a></li>
-                            <li class="menu-item"><a href="about-us.html">About Us</a></li>
-                            <li class="menu-item"><a href="about-us-2.html">About Us 2</a></li>
-                            <li class="menu-item"><a href="pricing.html">Pricing</a></li>
-                            <li class="menu-item"><a href="gallery-1.html">Gallery</a></li>
-                            <li class="menu-item"><a href="faq.html">FAQ</a></li>
-                            <li class="menu-item"><a href="testimonials.html">Testimonials</a></li>
+                            <li class="menu-item"><a asp-controller="Practice" asp-action="Details">Single Practice</a></li>
                         </ul>
                     </li>
                     <li class="menu-item menu-item-has-children">
-                        <a href="practice-areas.html">Practice Areas</a>
+                        <a asp-controller="Attorney" asp-action="AllAttorney">Attorneys</a>
                         <ul class="sub-menu">
-                            <li class="menu-item menu-item-has-children">
-                                <a href="practice-areas.html">Practice v1</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item"><a href="practice-areas-2-cols.html">Practice v1 2 Cols</a></li>
-                                    <li class="menu-item"><a href="practice-areas-3-cols.html">Practice v1 3 Cols</a></li>
-                                    <li class="menu-item"><a href="practice-areas.html">Practice v1 4 Cols</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a href="practice-areas-v2-3-cols.html">Practice v2</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item"><a href="practice-areas-v2-3-cols.html">Practice v2 3 Cols</a></li>
-                                    <li class="menu-item"><a href="practice-areas-v2-4-cols.html">Practice v2 4 Cols</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a href="practice-image-3-cols.html">Practice Image</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item"><a href="practice-image-3-cols.html">Practice Image 3 Cols</a></li>
-                                    <li class="menu-item"><a href="practice-image-4-cols.html">Practice Image 4 Cols</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item"><a href="practice-single-page.html">Single Practice</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-has-children">
-                        <a href="attorneys.html">Attorneys</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="attorneys-2-cols.html">Attorneys 2 Cols</a></li>
-                            <li class="menu-item"><a href="attorneys.html">Attorneys 3 Cols</a></li>
-                            <li class="menu-item"><a href="attorneys-4-cols.html">Attorneys 4 Cols</a></li>
-                            <li class="menu-item"><a href="attorneys-single-page.html">Single Attorney</a></li>
+                            <li class="menu-item"><a asp-controller="Attorney" asp-action="Details">Single Attorney</a></li>
                         </ul>
                     </li>
                     <li class="menu-item menu-item-has-children">
@@ -215,23 +135,14 @@
                         </ul>
                     </li>
                     <li class="menu-item menu-item-has-children">
-                        <a href="blog.html">Blog</a>
+                        <a asp-controller="Blog" asp-action="AllBlog">Blog</a>
                         <ul class="sub-menu">
-                            <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
-                            <li class="menu-item"><a href="blog-classic.html">Blog Classic</a></li>
-                            <li class="menu-item"><a href="blog.html">Blog Grid 2 Cols</a></li>
-                            <li class="menu-item"><a href="blog-grid-3-cols.html">Blog Grid 3 Cols</a></li>
-                            <li class="menu-item"><a href="blog-full-width.html">Blog Full Width</a></li>
-                            <li class="menu-item"><a href="blog-single-post.html">Blog Single Post</a></li>
+                            <li class="menu-item"><a asp-controller="Blog" asp-action="Details">Blog Single Post</a></li>
                         </ul>
                     </li>
                     <li class="menu-item menu-item-has-children">
-                        <a href="contact.html">Contact</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="contact.html">Contact 1</a></li>
-                            <li class="menu-item"><a href="contact-2.html">Contact 2</a></li>
-                            <li class="menu-item"><a href="contact-3.html">Contact 3</a></li>
-                        </ul>
+                        <a asp-controller="Contact" asp-action="Contactt">Contact</a>
+                      
                     </li>
                 </ul>
             </div>

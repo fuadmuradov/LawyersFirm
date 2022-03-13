@@ -1,4 +1,6 @@
-﻿		<!-- TOP IMAGE -->
+﻿@model List<Testimonial>
+
+		<!-- TOP IMAGE -->
 <div class="page-head " style="background-image:url(../assets/images/top-bkgs/about.jpg);">
     <div class="inner-desc">
         <div class="container">
@@ -20,7 +22,27 @@
             </div>
             <!-- /row -->
             <div class="row">
-                <div class="col-lg-6">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-lg-6">
+                        <div class="testimonial-wrapper">
+                            <div class="testimonial-content">
+                                <h6>@item.Description</h6>
+                            </div>
+                            <div class="icon-box-wrapper">
+                                <div class="icon-box-icon testimonial-client"><img src="~/assets/images/testimonials/@item.Image" alt=""></div>
+                                <div class="icon-box-content">
+                                    <div class="client-name">@item.Fullname</div>
+                                    <p class="client-company">@item.Componyname</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"Vocent utamur appareat ad his, eum volumus denique consectetuer id. Iusto affert mucius vix ei. Nec veritus epicurei tractatos at. Mel id posse nostrum, id ubique graece nostro mei."</h6>
@@ -33,9 +55,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"Sed sodales, odio eget adipiscing mattis, sapien purus dapibus felis, sit amet mollis velit dolor eu lorem. Vivamus condimentum nunc a quam lobortis tempus."</h6>
@@ -48,9 +70,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"Eros sale has id, usu solet primis cetero in. Vel ex qualisque argumentum dissentiet, iusto omnes ornatus nec at. Vim definiebas neglegentur mediocritatem in, est expetendis incorrupte scripserit an."</h6>
@@ -63,9 +85,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"Donec porttitor tincidunt lorem id semper. Praesent consequat volutpat molestie. Suspendisse sagittis velit et lacus lacinia, vitae dignissim urna feugiat. Nam suscipit sagittis."</h6>
@@ -78,9 +100,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"Utinam maiestatis quo cu. Id libris patrioque eos, pro soluta dignissim splendide ei, vim in iudico facilis. Usu te liber repudiare. Mea option apeirian periculis et, ex vis graece intellegam, option omittam id quo."</h6>
@@ -93,9 +115,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
-                <div class="col-lg-6">
+                <!--<div class="col-lg-6">
                     <div class="testimonial-wrapper">
                         <div class="testimonial-content">
                             <h6>"His alii nibh id, mel in dolorem sensibus. Te sea meis decore. Dicunt eligendi id his. In labores oportere splendide cum, pro in altera detracto tacimates. Ne has solum nominati delicata, ea habeo viris quo."</h6>
@@ -108,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- /col-lg-6 -->
             </div>
             <!-- /row -->
