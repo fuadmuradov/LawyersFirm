@@ -4,14 +4,16 @@ using LawyersFirm.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LawyersFirm.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20220313211228_Blog-BlogWriter-Tables")]
+    partial class BlogBlogWriterTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,77 +269,12 @@ namespace LawyersFirm.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Fullname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Fullname")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("BlogWriters");
-                });
-
-            modelBuilder.Entity("LawyersFirm.Models.DbTables.Case", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Challenge")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LawherFullname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Result")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Solution")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Time")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Cases");
-                });
-
-            modelBuilder.Entity("LawyersFirm.Models.DbTables.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("className")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("LawyersFirm.Models.DbTables.FAQ", b =>
@@ -721,17 +658,6 @@ namespace LawyersFirm.Migrations
                     b.Navigation("Practice");
                 });
 
-            modelBuilder.Entity("LawyersFirm.Models.DbTables.Case", b =>
-                {
-                    b.HasOne("LawyersFirm.Models.DbTables.Category", "Category")
-                        .WithMany("Cases")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("LawyersFirm.Models.DbTables.FaqImage", b =>
                 {
                     b.HasOne("LawyersFirm.Models.DbTables.FAQ", "FAQ")
@@ -848,11 +774,6 @@ namespace LawyersFirm.Migrations
             modelBuilder.Entity("LawyersFirm.Models.DbTables.BlogWriter", b =>
                 {
                     b.Navigation("Blogs");
-                });
-
-            modelBuilder.Entity("LawyersFirm.Models.DbTables.Category", b =>
-                {
-                    b.Navigation("Cases");
                 });
 
             modelBuilder.Entity("LawyersFirm.Models.DbTables.FAQ", b =>

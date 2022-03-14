@@ -1,0 +1,105 @@
+﻿@model Case
+@{
+    List<Case> cases = ViewBag.Cases;
+}
+<!-- TOP IMAGE -->
+<div class="page-head " style="background-image:url('images/top-bkgs/case-results.jpg');">
+    <div class="inner-desc">
+        <div class="container">
+            <h1 class="page-title">Case Single Page</h1>
+        </div>
+    </div>
+</div>
+<!-- /TOP IMAGE -->
+<!-- PAGE CONTENT -->
+<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+    <!-- SECTION 1-->
+    <section class="section-holder">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h3>@Model.Title</h3>
+                    <p>@Model.Description</p>
+                    <img src="~/assets/images/cases/@Model.Image" class="img-fluid margin-b32" alt="">
+                    <h3>The Challenge</h3>
+                    <p>@Model.Challenge</p>
+                    <h3>The Solution</h3>
+                    <p>@Model.Solution</p>
+                    <h3>The Result</h3>
+                    <p>@Model.Result</p>
+                </div>
+                <div class="col-lg-3">
+                    <aside>
+                        <ul>
+                            <li class="widget">
+                                <div class="case-info">
+                                    <h5 class="white margin-b16">Case Info</h5>
+                                    <ul class="case-info-list">
+                                        <li><b>Category:</b> @Model.Category.Name</li>
+                                        <li><b>Time:</b> @Model.Time Year</li>
+                                        <li><b>Lawyer:</b> @Model.LawherFullname</li>
+                                        <li><b>Result:</b> $@Model.Price</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="widget">
+                                <h5 class="widgettitle">Case Studies</h5>
+                                <div class="sidebar widget_recent_entries">
+                                    <ul>
+                                        @foreach (var item in cases)
+                                        {
+                                            <li><a asp-controller="Case" asp-action="Details" asp-route-id="@item.Id">@item.Title</a></li>
+
+                                        }
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="widget">
+                                <div class="practice-contact" style="background-image: url('../assets/images/practice/practice-banner.jpg');"><h5 class="white">Need help?</h5><p>Contact us today for a free consultation and our experts will help you.</p><p><strong>Phone:</strong> 1-800-000-111<br><strong>Email:</strong> contact@example.com</p><p><strong>Mon – Fri:</strong> 09:00 -17:00</p></div>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <!-- /row -->
+
+        </div>
+        <!-- /container -->
+    </section>
+    <!-- /SECTION 1-->
+    <!-- SECTION 2-->
+    <section class="section-holder">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 alignc">
+                    <span class="heading-subtitle">Contact Us</span>
+                    <h2 class="section-heading-title">Get in Touch</h2>
+                </div>
+            </div>
+            <!-- /row -->
+            <div class="row">
+                <div class="col-lg-4 alignc">
+                    <div class="icon-box-icon margin-none"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="icon-box-title">OFFICE</div>
+                    <p class="icon-box-description">40 Park Ave, Brooklyn, New York</p>
+                </div>
+                <div class="col-lg-4 alignc">
+                    <div class="icon-box-icon margin-none"><i class="fas fa-phone-alt"></i></div>
+                    <div class="icon-box-title">PHONE</div>
+                    <p class="icon-box-description">1-800-000-111</p>
+                </div>
+                <div class="col-lg-4 alignc">
+                    <div class="icon-box-icon margin-none"><i class="far fa-envelope"></i></div>
+                    <div class="icon-box-title">EMAIL</div>
+                    <p class="icon-box-description">contact@example.com</p>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </section>
+    <!-- /SECTION 2-->
+
+</div><!-- /PAGE CONTENT -->

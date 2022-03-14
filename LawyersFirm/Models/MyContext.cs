@@ -35,6 +35,11 @@ namespace LawyersFirm.Models
         public DbSet<Practice> Practices { get; set; }
         public DbSet<PriceToPractice> PriceToPractices { get; set; }
 
+        public DbSet<BlogWriter> BlogWriters { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Case> Cases { get; set; }
 
     }
 }
