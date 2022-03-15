@@ -1,0 +1,125 @@
+﻿@model Setting
+  <!-- MOBILE MENU HOLDER -->
+<div class="mobile-menu-holder">
+    <div class="modal-menu-container">
+        <div class="exit-mobile"> <span class="icon-bar1"></span> <span class="icon-bar2"></span></div>
+        <ul class="menu-mobile">
+            <li class="menu-item menu-item-has-children current-menu-item">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="About" asp-action="About">Pages</a>
+                <ul class="sub-menu">
+                    <li class="menu-item"><a asp-controller="About" asp-action="About">About Us</a></li>
+                    <li class="menu-item"><a asp-controller="About" asp-action="Pricing">Pricing</a></li>
+                    <li class="menu-item"><a asp-controller="About" asp-action="Faq">FAQ</a></li>
+                    <li class="menu-item"><a asp-controller="About" asp-action="Testimonial">Testimonials</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="Practice" asp-action="AllPractice">Practice Areas</a>
+                <ul class="sub-menu">
+
+                    <li class="menu-item"><a asp-controller="Practice" asp-action="Details">Single Practice</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="Attorney" asp-action="AllAttorney">Attorneys</a>
+                <ul class="sub-menu">
+                    <li class="menu-item"><a asp-controller="Attorney" asp-action="Details">Single Attorney</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="Case" asp-action="AllCase">Case Studies</a>
+                <ul class="sub-menu">
+
+                    <li class="menu-item"><a asp-controller="Case" asp-action="Details">Single Case</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="Blog" asp-action="AllBlog">Blog</a>
+                <ul class="sub-menu">
+                    <li class="menu-item"><a asp-controller="Blog" asp-action="Details">Blog Single Post</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-has-children">
+                <a asp-controller="Contact" asp-action="Contactt">Contact</a>
+
+            </li>
+        </ul>
+    </div>
+    <div class="menu-contact">
+        <ul>
+            <li><i class="fa fa-map-marker"></i><span>@Model.Address</span></li>
+            <li><i class="fa fa-mobile"></i><span>@Model.Phone</span></li>
+            <li><i class="fa fa-envelope"></i><span>@Model.Email</span></li>
+        </ul>
+        <ul class="social-media">
+            <li><a class="social-facebook" href="@Model.Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a class="social-twitter" href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="social-linkedin" href="@Model.Linkedin" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </div>
+</div>
+<!-- /MOBILE MENU HOLDER -->
+<!-- HEADER -->
+<header id="header-bar" class="header-1">
+    <div class="container">
+        <div class="header-wrap header-wrap1">
+            <div class="logo logo-1"><a asp-controller="Home" asp-action="Index"><img class="img-fluid" src="~/assets/images/@Model.Logo" alt="Lawyers"></a></div>
+            <div class="header-contact">
+                <div class="header-info"><span class="info-circle"><i class="fa fa-phone"></i></span> @Model.Phone</div>
+                <div class="header-info"><span class="info-circle"><i class="fa fa-envelope"></i></span> @Model.Email</div>
+            </div>
+            <div class="nav-button-holder"> <button type="button" class="nav-button"> <span class="icon-bar"></span> </button></div>
+        </div>
+        <div class="nav-holder nav-holder-1">
+            <ul class="menu-nav  menu-nav-1">
+                <li class="menu-item menu-item-has-children current-menu-item">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="About" asp-action="About">Pages</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a asp-controller="About" asp-action="About">About Us</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Pricing">Pricing</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Faq">FAQ</a></li>
+                        <li class="menu-item"><a asp-controller="About" asp-action="Testimonial">Testimonials</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="Practice" asp-action="AllPractices">Practice Areas</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a asp-controller="Practice" asp-action="Details">Single Practice</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="Attorney" asp-action="AllAttorney">Attorneys</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a asp-controller="Attorney" asp-action="Details">Single Attorney</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="Case" asp-action="AllCase">Case Studies</a>
+                    <ul class="sub-menu">
+
+                        <li class="menu-item"><a asp-controller="Case" asp-action="Details">Single Case</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="Blog" asp-action="AllBlog">Blog</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a asp-controller="Blog" asp-action="Details">Blog Single Post</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item-has-children">
+                    <a asp-controller="Contact" asp-action="Contactt">Contact</a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- /HEADER -->

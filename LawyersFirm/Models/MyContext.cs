@@ -41,5 +41,7 @@ namespace LawyersFirm.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Case> Cases { get; set; }
 
+        public DbSet<Setting> Settings { get; set; }
+
     }
 }

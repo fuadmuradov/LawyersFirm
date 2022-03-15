@@ -23,12 +23,13 @@ namespace LawyersFirm.Controllers
             return View(cases);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
-            if (id == null) id = db.Cases.FirstAsync().Id;
-            Case cases = await db.Cases.Include(c => c.Category).FirstOrDefaultAsync(i => i.Id == id);
-            ViewBag.Cases = await db.Cases.Include(c => c.Category).ToListAsync();
-            if (cases == null) return NotFound(); 
+            if (id == null) id = db.Cases.First().Id;
+            Case cases =  db.Cases.Include(c => c.Category).FirstOrDefault(i => i.Id == id);
+           
+            if (cases == null) return NotFound();
+            ViewBag.Cases = db.Cases.Include(c => c.Category).ToList();
             return View(cases);
         }
     }

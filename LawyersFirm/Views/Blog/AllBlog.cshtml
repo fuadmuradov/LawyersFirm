@@ -22,7 +22,7 @@
                         {
                             <div class="col-md-6 col-lg-4 blog-item-masonry">
                                 <article class="blog-item blog-item-2col-grid">
-                                    <a href="blog-single-post.html">
+                                    <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
                                         <div class="post-image"> <img src="~/assets/images/blog/@item.Image" class="img-fluid" alt=""></div>
                                     </a>
                                     <div class="post-holder">
@@ -30,7 +30,7 @@
                                             <li class="meta-date">@item.Date.ToString("MMMM dd, yyyy")</li>
                                             <li class="meta-categ"><a asp-controller="Practice" asp-action="Details" asp-route-id="@item.PracticeId" rel="category tag">@item.Practice.Name</a> <a href="#" rel="category tag">News</a></li>
                                         </ul>
-                                        <h2 class="blog-title"><a href="blog-single-post.html">@(item.SummaryTitle!=null && item.SummaryTitle.Length>40 ? item.SummaryTitle.Substring(0,40)+"...": item.SummaryTitle )</a></h2>
+                                        <h2 class="blog-title"><a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" >@(item.SummaryTitle!=null && item.SummaryTitle.Length>40 ? item.SummaryTitle.Substring(0,40)+"...": item.SummaryTitle )</a></h2>
                                         <div class="article-excerpt"> @(item.SummaryDesc!=null && item.SummaryDesc.Length>180 ? item.SummaryDesc.Substring(0,180)+"...": item.SummaryDesc )</div>
                                     </div>
                                 </article>
