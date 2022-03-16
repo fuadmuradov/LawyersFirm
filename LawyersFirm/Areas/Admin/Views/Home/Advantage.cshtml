@@ -1,0 +1,93 @@
+﻿@model Advantage
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label asp-for="@Model.Title" class="font-weight-600">Title</label>
+                            <input asp-for="@Model.Title" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Title"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.CustomerCount" class="font-weight-600">Customer Count</label>
+                            <input asp-for="@Model.CustomerCount" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.CustomerCount"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Experience" class="font-weight-600">Experience Year</label>
+                            <input asp-for="@Model.Experience" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Experience"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Expert" class="font-weight-600">Expert Count</label>
+                            <input asp-for="@Model.Expert" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Expert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Award" class="font-weight-600">Award &and; Honor</label>
+                            <input asp-for="@Model.Award" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Award"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <!--Table-->
+            <div class="card-body">
+                <div class=table-responsive>
+                    <!--<table class="table table-sm table-nowrap card-table">-->
+                    <label class="font-weight-600">Information Descriptions</label>
+                    <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Advantage Title</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.AdvantageDescs)
+                            {
+                                <tr>
+                                    @if (item.Description.Length > 100)
+                                    {
+                                        <td>@item.Description.Substring(0, 100) ...</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.Description</td>
+                                    }
+
+                                    <td>
+                                        @item.Advantage.Title
+                                    </td>
+
+                                    <td>
+                                        <a href="AdvantageDescDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="AdvantageDescCreate"> <button type="button" class="btn btn-secondary"> Add Advantage Description</button></a>
+                </div>
+            </div>
+
+            <!--End Table-->
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Script{
+
+    <script src="assets/dist/js/pages/forms-basic.active.js"></script>
+}

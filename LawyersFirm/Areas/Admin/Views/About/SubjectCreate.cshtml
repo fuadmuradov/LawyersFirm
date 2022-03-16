@@ -1,0 +1,29 @@
+﻿@model Subject
+
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Title" class="font-weight-600">Title</label>
+                            <input asp-for="@Model.Title" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Title"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Desc" class="font-weight-600">Description</label>
+                            <input asp-for="@Model.Desc" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Desc"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

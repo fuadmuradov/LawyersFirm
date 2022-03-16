@@ -15,8 +15,11 @@ namespace LawyersFirm.Models.DbTables
         [Required]
         [StringLength(maximumLength: 20)]
         public string CustomerCount { get; set; }
+        [Required]
         public int Experience { get; set; }
+        [Required]
         public int Expert { get; set; }
+        [Required]
         public int Award { get; set; }
 
         public List<AdvantageDesc> AdvantageDescs { get; set; }

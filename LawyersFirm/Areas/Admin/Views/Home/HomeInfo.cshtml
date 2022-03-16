@@ -1,0 +1,114 @@
+﻿@model FirmInfo
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label asp-for="@Model.Earned" class="font-weight-600">Slider Content</label>
+                            <input asp-for="@Model.Earned" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <!--Table-->
+            <div class="card-body">
+                <div class=table-responsive>
+                    <!--<table class="table table-sm table-nowrap card-table">-->
+                    <label class="font-weight-600">Information Descriptions</label>
+                    <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>FirmEarned</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.InfoDescs)
+                            {
+                                <tr>
+                                    @if (item.Description.Length > 100)
+                                    {
+                                        <td>@item.Description.Substring(0, 100) ...</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.Description</td>
+                                    }
+
+                                    <td>
+                                        @item.FirmInfo.Earned
+                                    </td>
+
+                                    <td>
+                                        <a href="InfoDescriptionDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        <a href="InfoDescriptionEdit/@item.Id" class="btn btn-success-soft btn-sm ml-1"><i class="far fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="OfficeImageCreate"> <button type="button" class="btn btn-secondary"> Add New Description</button></a>
+                </div>
+            </div>
+
+            <!--End Table-->
+            <!--Table-->
+            <div class="card-body">
+                <div class=table-responsive>
+                    <!--<table class="table table-sm table-nowrap card-table">-->
+                    <label class="font-weight-600">Office Images</label>
+                    <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>FirmEarned</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OfficeImages)
+                            {
+                                <tr>
+
+                                    <td>
+                                        <div class="avatar-group">
+                                            <a href="user_profile.html"  class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                                <img src="~/assets/images/home/@item.Image" style="width:45px; height:45px" class="avatar-img rounded-circle ml-1 mt-3" alt="...">
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @item.FirmInfo.Earned
+                                    </td>
+
+                                    <td>
+                                        <a href="DeleteOfficeImage/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="OfficeImageCreate"> <button type="button" class="btn btn-secondary"> Add New Office Image</button></a>
+                </div>
+            </div>
+
+            <!--End Table-->
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Script{
+
+    <script src="assets/dist/js/pages/forms-basic.active.js"></script>
+}

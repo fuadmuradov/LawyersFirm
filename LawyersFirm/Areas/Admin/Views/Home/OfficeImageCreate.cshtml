@@ -1,0 +1,20 @@
+﻿@model OfficeImageDescVM
+
+<div class="card center-block mb-5" style="width:50rem;">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="font-weight-600">Add new Office Image</label>
+                    <input type="file" class="form-control" asp-for="Photo"><br />
+                    <span asp-validation-for="Photo"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Description" class="font-weight-600">Add new Description</label>
+                    <input asp-for="@Model.Description" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success ml-4">Submit</button>
+        </form>
+    </div>
+</div>

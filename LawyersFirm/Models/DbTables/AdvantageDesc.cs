@@ -11,7 +11,7 @@ namespace LawyersFirm.Models.DbTables
         public int Id { get; set; }
         [Required]
         public string Description { get; set; }
-
+        [Required]
         public int AdvantageId { get; set; }
         public Advantage Advantage { get; set; }
 
