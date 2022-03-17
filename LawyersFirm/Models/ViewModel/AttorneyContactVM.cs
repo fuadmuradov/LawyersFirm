@@ -6,13 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LawyersFirm.Models.DbTables
+namespace LawyersFirm.Models.ViewModel
 {
-    public class Attorney
+    public class AttorneyContactVM
     {
-        public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength:50)]
+        [StringLength(maximumLength: 50)]
         public string Fullname { get; set; }
         [Required]
         [StringLength(maximumLength: 50)]
@@ -31,10 +30,19 @@ namespace LawyersFirm.Models.DbTables
         [StringLength(maximumLength: 100)]
         public string SummarySentence { get; set; }
 
-        public List<AttorneyAward> AttorneyAwards { get; set; }
-
-        public List<AttorneyPractice> AttorneyPractices { get; set; }
-
-        public List<AttorneyContact> AttorneyContacts { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        [StringLength(maximumLength: 20)]
+        public string Phone { get; set; }
+        [Required]
+        public string Facebook { get; set; }
+        [Required]
+        public string Twitter { get; set; }
+        [Required]
+        public string Linkedin { get; set; }
+        [Required]
+        public int AttorneyId { get; set; }
     }
 }

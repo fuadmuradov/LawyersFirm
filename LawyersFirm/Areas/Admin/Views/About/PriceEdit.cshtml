@@ -1,0 +1,56 @@
+﻿@model Price
+@{ 
+    List<PriceToPractice> ppractice = ViewBag.PriceToPractices;
+}
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Amount" class="font-weight-600">Amount</label>
+                            <input asp-for="Amount" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Amount"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Package" class="font-weight-600">Description</label>
+                            <input asp-for="Package" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Package"></span>
+                        </div>
+                        <div class="form-group">
+                                <label asp-for="PracticeIds">Hobbies</label>
+                                <select asp-for="PracticeIds" class="form-select">
+
+                                    @{
+                                        int temp = 0;
+                                        foreach (var item in ViewBag.Practices)
+                                        {
+
+
+                                            @if (temp < ppractice.Count && item.Id == ppractice.Skip(temp).FirstOrDefault().PracticeId)
+                                            {
+                                                <option value="@item.Id" selected>@item.Name</option>
+                                                temp++;
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="PracticeIds"></span>
+                          
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

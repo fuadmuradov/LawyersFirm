@@ -1,0 +1,127 @@
+﻿@model FAQ
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Title" class="font-weight-600">Title</label>
+                            <input asp-for="@Model.Title" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Title"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Description" class="font-weight-600">Description</label>
+                            <input asp-for="@Model.Description" class="form-control" id="exampleFormControlInput1" placeholder="Slider Content">
+                            <span asp-validation-for="@Model.Description"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <!--Table-->
+            <div class="card-body">
+                <div class=table-responsive>
+                    <!--<table class="table table-sm table-nowrap card-table">-->
+                    <label class="font-weight-600">Information Descriptions</label>
+                    <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.FaqQuestions)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Question
+
+                                    </td>
+                                    @if (item.Answer.Length > 100)
+                                    {
+                                        <td>@item.Answer.Substring(0, 100) ...</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.Answer</td>
+                                    }
+
+
+                                    <td>
+                                        <a href="FaqDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        <a href="FaqEdit/@item.Id" class="btn btn-success-soft btn-sm ml-1"><i class="far fa-edit"></i></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="FaqCreate"> <button type="button" class="btn btn-secondary"> Add new FAQ</button></a>
+                </div>
+            </div>
+
+            <!--End Table-->
+
+
+            <!--Table-->
+            <div class="card-body">
+                <div class=table-responsive>
+                    <!--<table class="table table-sm table-nowrap card-table">-->
+                    <label class="font-weight-600">Information Descriptions</label>
+                    <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>FAQ Title</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.FaqImages)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="avatar-group">
+                                            <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                                <img src="~/assets/images/cases/@item.Image" class="avatar-img rounded-circle" alt="...">
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+                                    @if (item.FAQ.Title.Length > 60)
+                                    {
+                                        <td>@item.FAQ.Title.Substring(0, 60) ...</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.FAQ.Title</td>
+                                    }
+
+
+                                    <td>
+                                        <a href="FaqImageDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        <a href="FaqImageEdit/@item.Id" class="btn btn-success-soft btn-sm ml-1"><i class="far fa-edit"></i></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="FaqImageCreate"> <button type="button" class="btn btn-secondary"> Add new FAQ</button></a>
+                </div>
+            </div>
+
+            <!--End Table-->
+        </div>
+    </div>
+</div>

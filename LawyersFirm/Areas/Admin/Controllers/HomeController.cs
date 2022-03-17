@@ -31,13 +31,12 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
 
         // SLider Tables Information and Tables
+        #region SLIDER SECTION
         public IActionResult Slider()
         {
             LawyersFirm.Models.DbTables.Slider slider = db.Sliders.Include(s => s.SliderImages).First();
             return View(slider);
         }
-
-        #region SLIDER SECTION
 
         //Slider Content Update
         [HttpPost]

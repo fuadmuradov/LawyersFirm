@@ -1,0 +1,39 @@
+﻿
+@model Testimonial
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Photo" class="font-weight-600">Photo</label>
+                            <input asp-for="Photo" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Photo"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Fullname" class="font-weight-600">FullName</label>
+                            <input asp-for="Fullname" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Fullname"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="font-weight-600">Description</label>
+                            <input asp-for="Description" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Componyname" class="font-weight-600">Compony Name</label>
+                            <input asp-for="Componyname" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Componyname"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

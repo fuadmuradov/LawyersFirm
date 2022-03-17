@@ -1,0 +1,35 @@
+﻿@model AttorneyAward
+
+@{ 
+ 
+}
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="font-weight-600">Award</label>
+                            <input asp-for="Name" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                
+                     
+                        <div class="form-group">
+                            <label asp-for="AttorneyId" class="font-weight-600">Attorney</label>
+                            <select asp-for="AttorneyId" class="form-select" asp-items="@(new SelectList(ViewBag.Attorney, "Id", "Fullname"))">
+                            </select>
+                            <span asp-validation-for="AttorneyId"></span>
+
+                        </div>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

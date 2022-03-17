@@ -1,0 +1,77 @@
+﻿@model AttorneyContactVM
+
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Photo" class="font-weight-600">Photo</label>
+                            <input asp-for="Photo" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Photo"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Fullname" class="font-weight-600"> FullName</label>
+                            <input asp-for="Fullname" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Fullname"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Jobname" class="font-weight-600">Job Name</label>
+                            <input asp-for="Jobname" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Jobname"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Biography" class="font-weight-600">Biography</label>
+                            <input asp-for="Biography" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Biography"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Education" class="font-weight-600">Education</label>
+                            <input asp-for="Education" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Education"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SummarySentence" class="font-weight-600">Quote</label>
+                            <input asp-for="SummarySentence" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="SummarySentence"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email" class="font-weight-600">Email</label>
+                            <input asp-for="Email" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Phone" class="font-weight-600">Phone</label>
+                            <input asp-for="Phone" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Phone"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Facebook" class="font-weight-600">Facebook URL</label>
+                            <input asp-for="Facebook" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Facebook"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Twitter" class="font-weight-600">Twitter URL</label>
+                            <input asp-for="Twitter" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Twitter"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Linkedin" class="font-weight-600">Linkedin URL</label>
+                            <input asp-for="Linkedin" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Linkedin"></span>
+
+                        </div>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

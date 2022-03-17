@@ -1,0 +1,37 @@
+﻿@model List<AttorneyPractice>
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Information Descriptions</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th> FullName</th>
+                    <th>Avard</th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Attorney.Fullname
+                        </td>
+                        <td>
+                            <a href="AttorneyPracticeDelete/@item.Id" class="btn btn-danger-soft btn-sm mb-2"><i class="far fa-trash-alt"></i></a>
+                            <a href="AttorneyPracticeAwardEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="AttorneyPracticeCreate"> <button type="button" class="btn btn-secondary"> Add Attorney Award</button></a>
+    </div>
+</div>

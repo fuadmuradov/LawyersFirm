@@ -1,0 +1,82 @@
+﻿@model List<Practice>
+  <!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Information Descriptions</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Title</th>
+                    <th>Explonation</th>
+                    <th>Icon</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <div class="avatar-group">
+                            <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                <img src="~/assets/images/practice/@item.Image" class="avatar-img rounded-circle" alt="...">
+                            </a>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    @{ if (item.Description.Length > 50)
+                        {
+                            <td>@item.Description.Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Description</td>
+                        }
+                    }
+
+                    @{
+                        if (item.Title.Length > 40)
+                        {
+                            <td>@item.Title.Substring(0, 40) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Title</td>
+                        }
+                    }
+
+                    @{
+                        if (item.Explonation.Length > 40)
+                        {
+                            <td>@item.Explonation.Substring(0, 40) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Explonation</td>
+                        }
+                    }
+
+                    <td>@Html.Raw(item.Icon)</td>
+
+                    <td>
+                        <a href="PracticeDelete/@item.Id" class="btn btn-danger-soft btn-sm mb-2"><i class="far fa-trash-alt"></i></a>
+                        <a href="PracticeEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <a href="PracticeCreate"> <button type="button" class="btn btn-secondary"> Add Practice</button></a>
+    </div>
+</div>
+
+<!--End Table-->

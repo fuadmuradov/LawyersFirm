@@ -1,0 +1,139 @@
+﻿@model List<Attorney>
+@{
+    List<AttorneyContact> attorneyContacts = ViewBag.AttorneyContact;
+    List<AttorneyAward> attorneyAwards = ViewBag.AttorneyAward;
+}
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Information Descriptions</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th> FullName</th>
+                    <th>Jobname</th>
+                    <th>Biography</th>
+                    <th>Education</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>FaceBook</th>
+                    <th>Twitter</th>
+                    <th>Linkedin</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="avatar-group">
+                                <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                    <img src="~/assets/images/team/@item.Image" class="avatar-img rounded-circle" alt="...">
+                                </a>
+
+                            </div>
+
+                        </td>
+                        <td>
+                            @item.Fullname
+                        </td>
+                        <td>
+                            @item.Jobname
+                        </td>
+                        @{ if (item.Biography.Length > 50)
+                            {
+                                <td>@item.Biography.Substring(0, 50) ...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Biography</td>
+                            }
+                        }
+
+                        @{
+                            if (item.Education.Length > 40)
+                            {
+                                <td>@item.Education.Substring(0, 40) ...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Education</td>
+                            }
+                        }
+
+                        @{
+                            if (item.SummarySentence.Length > 40)
+                            {
+                                <td>@item.SummarySentence.Substring(0, 40) ...</td>
+                            }
+                            else
+                            {
+                                <td>@item.SummarySentence</td>
+                            }
+                        }
+
+
+                        <td>@item.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == item.Id).Email</td>
+                        <td>@item.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == item.Id).Phone</td>
+                        <td>@item.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == item.Id).Facebook</td>
+                        <td>@item.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == item.Id).Twitter</td>
+                        <td>@item.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == item.Id).Linkedin</td>
+                        <td>
+                            <a href="AttorneyDelete/@item.Id" class="btn btn-danger-soft btn-sm mb-2"><i class="far fa-trash-alt"></i></a>
+                            <a href="AttorneyEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="AttorneyCreate"> <button type="button" class="btn btn-secondary"> Add Attorney</button></a>
+        <a href="AttorneyPractice"> <button type="button" class="btn btn-secondary"> AttorneyPractice</button></a>
+
+    </div>
+</div>
+
+<!--End Table-->
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Information Descriptions</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th> FullName</th>
+                    <th>Avard</th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in attorneyAwards)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Attorney.Fullname
+                        </td>
+                        <td>
+                            <a href="AttorneyAwardDelete/@item.Id" class="btn btn-danger-soft btn-sm mb-2"><i class="far fa-trash-alt"></i></a>
+                            <a href="AttorneyAwardEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="AttorneyAwardCreate"> <button type="button" class="btn btn-secondary"> Add Attorney Award</button></a>
+    </div>
+</div>
+
+<!--End Table-->
