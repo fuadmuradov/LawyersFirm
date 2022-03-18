@@ -1,0 +1,102 @@
+﻿@model List<Case>
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Information Descriptions</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Challange</th>
+                    <th>Solution</th>
+                    <th>Result</th>
+                    <th>Time</th>
+                    <th>LawyerName</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <div class="avatar-group">
+                            <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                <img src="~/assets/images/cases/@item.Image" class="avatar-img rounded-circle" alt="...">
+                            </a>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+
+                    @{ if (item.Description.Length > 50)
+                        {
+                            <td>@item.Description.Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Description</td>
+                        }
+                    }
+
+                    @{
+                        if (item.Challenge.Length > 40)
+                        {
+                            <td>@item.Challenge.Substring(0, 40) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Challenge</td>
+                        }
+                    }
+
+                    @{
+                        if (item.Solution.Length > 40)
+                        {
+                            <td>@item.Solution.Substring(0, 40) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Solution</td>
+                        }
+                    }
+
+                    @{
+                        if (item.Result.Length > 40)
+                        {
+                            <td>@item.Result.Substring(0, 40) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Result</td>
+                        }
+                    }
+
+                    <td>@item.Time</td>
+                    <td>@item.LawherFullname</td>
+                    <td>@item.Price</td>
+                    <td>@item.Category.Name</td>
+
+                    <td>
+                        <a href="CaseDelete/@item.Id" class="btn btn-danger-soft btn-sm mb-2"><i class="far fa-trash-alt"></i></a>
+                        <a href="CaseEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <a href="CaseCreate"> <button type="button" class="btn btn-secondary"> Add new Case</button></a>
+        
+    </div>
+</div>
+
+<!--End Table-->

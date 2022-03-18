@@ -1,0 +1,71 @@
+﻿@model Case
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Photo" class="font-weight-600">Photo</label>
+                            <input asp-for="Photo" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Photo"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Title" class="font-weight-600">Title</label>
+                            <input asp-for="Title" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Title"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="font-weight-600">Description</label>
+                            <input asp-for="Description" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Challenge" class="font-weight-600">Challenge</label>
+                            <input asp-for="Challenge" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Challenge"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Solution" class="font-weight-600">Solution</label>
+                            <input asp-for="Solution" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Solution"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Result" class="font-weight-600">Result</label>
+                            <input asp-for="Result" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Result"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Time" class="font-weight-600">Time</label>
+                            <input asp-for="Time" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Time"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LawherFullname" class="font-weight-600">Lawyer Name</label>
+                            <input asp-for="LawherFullname" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="LawherFullname"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="font-weight-600">Price</label>
+                            <input asp-for="Price" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Price"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="CategoryId" class="font-weight-600">Attorney</label>
+                            <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Category, "Id", "Name"))">
+                            </select>
+                            <span asp-validation-for="CategoryId"></span>
+
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

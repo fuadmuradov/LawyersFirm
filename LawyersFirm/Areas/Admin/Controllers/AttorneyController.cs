@@ -169,7 +169,12 @@ namespace LawyersFirm.Areas.Admin.Controllers
             Attorney attorney = db.Attorneys.FirstOrDefault(i => i.Id == id);
             if (attorney == null) return NotFound();
             AttorneyContact attorneyContact = db.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == attorney.Id);
+            List<AttorneyAward> attorneyAward = db.AttorneyAwards.Where(k => k.AttorneyId == attorney.Id).ToList();
+            List<AttorneyPractice> attorneyPractice = db.AttorneyPractices.Where(k => k.AttorneyId == attorney.Id).ToList();
+         
             db.AttorneyContacts.Remove(attorneyContact);
+            db.AttorneyAwards.RemoveRange(attorneyAward);
+            db.AttorneyPractices.RemoveRange(attorneyPractice);
             db.Attorneys.Remove(attorney);
             db.SaveChanges();
 
@@ -179,7 +184,17 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         #endregion
 
+
+
         #region AttornewAward Table Crud
+
+        public IActionResult AttorneyAward()
+        {
+            List<AttorneyPractice> attorneyPractices = db.AttorneyPractices.Include(i=>i.Attorney).ToList();
+            return View(attorneyPractices);
+        }
+
+
         public IActionResult AttorneyAwardCreate()
         {
             ViewBag.Attorney = db.Attorneys.ToList();
@@ -268,20 +283,64 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AttorneyPractice(AttorneyAward attorneyAward)
+        public async Task<IActionResult> AttorneyPracticeCreate(AttorneyPractice attorneyPractice)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            Attorney attorney = db.Attorneys.FirstOrDefault(k => k.Id == attorneyAward.AttorneyId);
+            Attorney attorney = db.Attorneys.FirstOrDefault(k => k.Id == attorneyPractice.AttorneyId);
             if (attorney == null) return NotFound();
-            db.AttorneyAwards.Add(attorneyAward);
+            db.AttorneyPractices.Add(attorneyPractice);
             await db.SaveChangesAsync();
 
-            return LocalRedirect("/Admin/Attorney/AttorneyPage");
+            return LocalRedirect("/Admin/Attorney/AttorneyPractice");
         }
 
+
+
+        public IActionResult AttorneyPracticeEdit(int? id)
+        {
+            ViewBag.Attorney = db.Attorneys.ToList();
+            if (id == null) return NotFound();
+            AttorneyPractice attorneyPractice = db.AttorneyPractices.FirstOrDefault(k => k.Id == id);
+            if (attorneyPractice == null) return NotFound();
+
+
+            return View(attorneyPractice);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AttorneyPracticeEdit(AttorneyPractice attorneyPractice)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            AttorneyPractice attorneyPractice1 = await db.AttorneyPractices.FirstOrDefaultAsync(k => k.Id == attorneyPractice.Id);
+            if (attorneyPractice1 == null) return NotFound();
+            Attorney attorney = await db.Attorneys.FirstOrDefaultAsync(i => i.Id == attorneyPractice.AttorneyId);
+            if (attorney == null) return NotFound();
+            attorneyPractice1.Name = attorneyPractice.Name;
+            attorneyPractice1.AttorneyId = attorneyPractice.AttorneyId;
+            await db.SaveChangesAsync();
+
+
+            return LocalRedirect("/Admin/Attorney/AttorneyPractice");
+        }
+
+
+        public async Task<IActionResult> AttorneyPracticeDelete(int? id)
+        {
+            if (id == null) return NotFound();
+            AttorneyPractice attorneyPractice = db.AttorneyPractices.FirstOrDefault(k => k.Id == id);
+            if (attorneyPractice == null) return NotFound();
+            db.AttorneyPractices.Remove(attorneyPractice);
+            await db.SaveChangesAsync();
+
+            return LocalRedirect("/Admin/Attorney/AttorneyPractice");
+        }
 
         #endregion
 

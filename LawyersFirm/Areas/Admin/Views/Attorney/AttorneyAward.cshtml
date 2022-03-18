@@ -1,4 +1,5 @@
 ﻿@model List<AttorneyPractice>
+<!--Table-->
 <div class="card-body">
     <div class=table-responsive>
         <!--<table class="table table-sm table-nowrap card-table">-->
@@ -24,14 +25,16 @@
                             @item.Attorney.Fullname
                         </td>
                         <td>
-                            <a href="AttorneyPracticeDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
-                            <a href="AttorneyPracticeEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="AttorneyAwardDelete/@item.Id" class="btn btn-danger-soft btn-sm "><i class="far fa-trash-alt"></i></a>
+                            <a href="AttorneyAwardEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
 
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <a href="AttorneyPracticeCreate"> <button type="button" class="btn btn-secondary"> Add Attorney Practice</button></a>
+        <a href="AttorneyAwardCreate"> <button type="button" class="btn btn-secondary"> Add Attorney Award</button></a>
     </div>
 </div>
+
+<!--End Table-->
