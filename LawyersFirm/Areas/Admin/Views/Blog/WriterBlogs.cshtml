@@ -1,0 +1,93 @@
+﻿
+@model List<Blog>
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Blog Information</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th> Title </th>
+                    <th>Information</th>
+                    <th>Header</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Writer</th>
+                    <th>Practice Area</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <div class="avatar-group">
+                            <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                <img src="~/assets/images/blog/@item.Image" class="avatar-img rounded-circle" alt="...">
+                            </a>
+
+                        </div>
+
+                    </td>
+                    @{ if (item.SummaryTitle.Length > 30)
+                        {
+                            <td>@item.SummaryTitle.Substring(0, 30) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.SummaryTitle</td>
+                        }
+                    }
+
+
+                    @{ if (item.SummaryDesc.Length > 50)
+                        {
+                            <td>@item.SummaryDesc.Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.SummaryDesc</td>
+                        }
+                    }
+
+                    @{ if (item.HeaderTitle.Length > 30)
+                        {
+                            <td>@item.HeaderTitle.Substring(0, 30) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.HeaderTitle</td>
+                        }
+                    }
+
+                    @{ if (item.Description.Length > 50)
+                        {
+                            <td>@item.Description.Substring(0, 50) ...</td>
+                        }
+                        else
+                        {
+                            <td>@item.Description</td>
+                        }
+                    }
+
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.BlogWriter.Fullname</td>
+                    <td>@item.Practice.Name</td>
+
+                    <td>
+                        @*<a href="WriterBlogs/item.Id" class="btn btn-success-soft btn-sm mr-1"><i class="far fa-eye"></i></a>*@
+                        <a href="\admin/Blog/BlogDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                        <a href="\admin/Blog/BlogEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--End Table-->

@@ -19,7 +19,6 @@ namespace LawyersFirm.Models.DbTables
         public string Description { get; set; }
         public string Image { get; set; }
         [NotMapped]
-        [Required]
         public IFormFile Photo { get; set; }
         [Required]
         [StringLength(maximumLength:1000)]

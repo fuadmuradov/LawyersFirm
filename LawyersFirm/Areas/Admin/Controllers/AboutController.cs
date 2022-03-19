@@ -107,6 +107,12 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         #endregion
 
+
+
+//********************************************************************************************
+
+
+
         #region Pricing Section
         public IActionResult Pricing()
         {

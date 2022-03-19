@@ -1,0 +1,61 @@
+﻿@model List<BlogWriter>
+@{
+
+}
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">Blog Writer Information</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th> FullName</th>
+                    <th>Information</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="avatar-group">
+                                <a href="user_profile.html" class="avatar avatar-xs" data-toggle="tooltip" title="Melissa Ayre">
+                                    <img src="~/assets/images/@item.Image" class="avatar-img rounded-circle" alt="...">
+                                </a>
+
+                            </div>
+
+                        </td>
+                        <td>
+                            @item.Fullname
+                        </td>
+                      
+                        @{ if (item.Description.Length > 50)
+                            {
+                                <td>@item.Description.Substring(0, 50) ...</td>
+                            }
+                            else
+                            {
+                                <td>@item.Description</td>
+                            }
+                        }
+
+                    <td>
+                        <a href="WriterBlogs/@item.Id" class="btn btn-success-soft btn-sm mr-1"><i class="far fa-eye"></i></a>
+                        <a href="BlogWriterDelete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                        <a href="BlogWriterEdit/@item.Id" class="btn btn-success-soft btn-sm"><i class="far fa-edit"></i></a>
+
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="BlogWriterCreate"> <button type="button" class="btn btn-secondary"> Add Writer</button></a>
+        <a href="BlogCreate"> <button type="button" class="btn btn-secondary"> Add Blog</button></a>
+    </div>
+</div>
+
+<!--End Table-->

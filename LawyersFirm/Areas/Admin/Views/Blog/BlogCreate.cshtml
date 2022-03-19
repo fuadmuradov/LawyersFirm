@@ -1,0 +1,64 @@
+﻿@model Blog
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Photo" class="font-weight-600">Photo</label>
+                            <input asp-for="Photo" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Photo"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SummaryTitle" class="font-weight-600">Title</label>
+                            <input asp-for="SummaryTitle" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="SummaryTitle"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label asp-for="SummaryDesc" class="font-weight-600">Information</label>
+                            <input asp-for="SummaryDesc" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="SummaryDesc"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="HeaderTitle" class="font-weight-600">Header</label>
+                            <input asp-for="HeaderTitle" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="HeaderTitle"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="font-weight-600">Description</label>
+                            <input asp-for="Description" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Date" class="font-weight-600">Date</label>
+                            <input asp-for="Date" class="form-control" id="exampleFormControlInput1">
+                            <span asp-validation-for="Date"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="BlogWriterId" class="font-weight-600">Practice Area</label>
+                            <select asp-for="BlogWriterId" class="form-select" asp-items="@(new SelectList(ViewBag.BlogWriter, "Id", "Fullname"))">
+                            </select>
+                            <span asp-validation-for="BlogWriterId"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PracticeId" class="font-weight-600">Practice Area</label>
+                            <select asp-for="PracticeId" class="form-select" asp-items="@(new SelectList(ViewBag.Practice, "Id", "Name"))">
+                            </select>
+                            <span asp-validation-for="PracticeId"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
