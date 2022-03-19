@@ -43,5 +43,7 @@ namespace LawyersFirm.Models
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
     }
 }

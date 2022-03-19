@@ -10,7 +10,7 @@
                             <label asp-for="@Model.Title" class="font-weight-600">Slider Content</label>
                             <input asp-for="@Model.Title" class="form-control" id="exampleFormControlInput1" name="Content" placeholder="Slider Content">
                         </div>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to Update?')" >Update</button>
                     </form>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="Delete/@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        <a href="Delete/@item.Id" class="btn btn-danger-soft btn-sm" onclick="return confirm('Are you sure you want to delete?')" ><i class="far fa-trash-alt"></i></a>
                                         <a href="Edit/@item.Id" class="btn btn-success-soft btn-sm ml-1"><i class="far fa-edit"></i></a>
                                     </td>
                                 </tr>
