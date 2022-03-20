@@ -1,4 +1,5 @@
 ﻿using LawyersFirm.Models;
+using LawyersFirm.Models.DbTables;
 using LawyersFirm.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,24 @@ namespace LawyersFirm.Controllers
                 Testimonials = db.Testimonials.ToList()
             };
             return View(home);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SendMail(string name, string email, string subject, string message)
+        {
+            Notification notification = new Notification()
+            {
+                Fullname = name,
+                Email = email,
+                Subject = subject,
+                Message = message
+            };
+
+            db.Notifications.Add(notification);
+            await db.SaveChangesAsync();
+
+            return LocalRedirect("/Home/Index");
         }
 
        

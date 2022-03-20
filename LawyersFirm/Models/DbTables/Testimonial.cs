@@ -18,10 +18,10 @@ namespace LawyersFirm.Models.DbTables
         [NotMapped]
         public IFormFile Photo { get; set; }
         [Required]
-        [StringLength(maximumLength:400)]
+        [StringLength(maximumLength:1500)]
         public string Description { get; set; }
         [Required]
-        [StringLength(maximumLength: 50)]
+        [StringLength(maximumLength: 100)]
         public string Componyname { get; set; }
     }
 }

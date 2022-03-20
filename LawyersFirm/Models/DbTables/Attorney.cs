@@ -22,7 +22,7 @@ namespace LawyersFirm.Models.DbTables
         [NotMapped]
         public IFormFile Photo { get; set; }
         [Required]
-        [StringLength(maximumLength: 1500)]
+        [StringLength(maximumLength: 3000)]
         public string Biography { get; set; }
         [Required]
         [StringLength(maximumLength: 1500)]

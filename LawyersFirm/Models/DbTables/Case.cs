@@ -12,22 +12,22 @@ namespace LawyersFirm.Models.DbTables
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength: 100)]
+        [StringLength(maximumLength: 300)]
         public string Title { get; set; }
         [Required]
-        [StringLength(maximumLength: 1000)]
+        [StringLength(maximumLength: 3000)]
         public string Description { get; set; }
         public string Image { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }
         [Required]
-        [StringLength(maximumLength:1000)]
+        [StringLength(maximumLength:3000)]
         public string Challenge { get; set; }
         [Required]
-        [StringLength(maximumLength: 1000)]
+        [StringLength(maximumLength: 3000)]
         public string Solution { get; set; }
         [Required]
-        [StringLength(maximumLength: 1000)]
+        [StringLength(maximumLength: 3000)]
         public string Result { get; set; }
         [Required]
         public int Time { get; set; }

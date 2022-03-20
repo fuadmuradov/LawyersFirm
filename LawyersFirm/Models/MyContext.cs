@@ -1,4 +1,5 @@
 ﻿using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LawyersFirm.Models
 {
-    public class MyContext:DbContext
+    public class MyContext: IdentityDbContext<AppUser>
     {
         public MyContext(DbContextOptions<MyContext> options) : base(options) { }
 

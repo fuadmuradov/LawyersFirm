@@ -10,7 +10,7 @@ namespace LawyersFirm.Models.DbTables
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength: 100)]
+        [StringLength(maximumLength: 300)]
         public string Title { get; set; }
         [Required]
         [StringLength(maximumLength: 20)]

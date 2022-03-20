@@ -395,13 +395,13 @@
                 </div>
                 <div class="col-lg-6">
                     <div id="contact-form-holder">
-                        <form method="post" id="contact-form" action="include/contact-process.php">
+                        <form method="post" id="contact-form" asp-controller="Home" asp-action="SendMail">
                             <div class="margin-b32"><label>Name</label><input type="text" name="name" class="comm-field" /></div>
                             <div class="margin-b32"><label>Email</label><input type="text" name="email" class="comm-field" /> </div>
                             <div class="margin-b32"><label>Subject</label><input type="text" name="subject" class="comm-field" /> </div>
                             <div class="margin-b32"><label>Message</label><textarea name="message" id="msg-contact" rows="5"></textarea></div>
                             <p class="antispam">Leave this empty: <input type="text" name="url" /></p>
-                            <p><input type="submit" value="Send message" id="submit" /></p>
+                            <p><input type="submit" formaction="@Url.Action("SendMail")" formmethod="post" value="Send message" id="submit"  /></p>
                         </form>
                     </div>
                     <!-- contact-form-holder-->

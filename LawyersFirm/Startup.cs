@@ -1,7 +1,9 @@
 using LawyersFirm.Models;
+using LawyersFirm.Models.DbTables;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,14 @@ namespace LawyersFirm
             services.AddDbContext<MyContext>(option => 
                 option.UseSqlServer(Configuration.GetConnectionString("LawyerFirmDefault"))
             );
+
+            services.AddIdentity<AppUser, IdentityRole>(option => {
+                option.Password.RequireDigit = true;
+                option.Password.RequiredLength = 8;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequireLowercase = false;
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<MyContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +58,7 @@ namespace LawyersFirm
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

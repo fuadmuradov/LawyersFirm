@@ -23,5 +23,22 @@ namespace LawyersFirm.Controllers
 
             return View(setting);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMail(string name, string email, string subject, string message)
+        {
+            Notification notification = new Notification()
+            {
+                Fullname = name,
+                Email = email,
+                Subject = subject,
+                Message = message
+            };
+
+            db.Notifications.Add(notification);
+            await db.SaveChangesAsync();
+
+            return LocalRedirect("/Contact/Contactt");
+        }
     }
 }

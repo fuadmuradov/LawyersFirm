@@ -12,16 +12,16 @@ namespace LawyersFirm.Models.DbTables
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength:120)]
+        [StringLength(maximumLength:300)]
         public string SummaryTitle { get; set; }
         [Required]
-        [StringLength(maximumLength: 800)]
+        [StringLength(maximumLength: 2000)]
         public string SummaryDesc { get; set; }
         [Required]
-        [StringLength(maximumLength: 100)]
+        [StringLength(maximumLength: 300)]
         public string HeaderTitle { get; set; }
         [Required]
-        [StringLength(maximumLength: 800)]
+        [StringLength(maximumLength: 2000)]
         public string Description { get; set; }
         public string Image { get; set; }
         [NotMapped]
