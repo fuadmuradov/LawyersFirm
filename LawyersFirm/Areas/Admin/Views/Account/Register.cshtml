@@ -60,13 +60,10 @@
                             <input type="password" asp-for="ConfirmPassword" class="form-control" id="pass" placeholder=" Confirm Password">
                             <br> <span class=" text-danger text" asp-validation-for="ConfirmPassword"></span>
                         </div>
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">By signing up, you agree to the <a href="#">terms of service</a></label>
-                        </div>
+                       
                         <button type="submit" class="btn btn-success btn-block">Sign up</button>
                         <p class="text-muted text-center mt-3 mb-0">
-                            Already have an Account? <a class="external" href="#">Sign In</a>.
+                            Already have an Account? <a class="external" asp-controller="Account" asp-action="Login" asp-area="Admin">Sign In</a>.
                         </p>
                     </form>
                 </div>

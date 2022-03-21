@@ -29,7 +29,9 @@ namespace LawyersFirm.Controllers
                 FirmInfo = db.FirmInfos.Include(i => i.InfoDescs).Include(f => f.OfficeImages).First(),
                 Attorneys = db.Attorneys.Include(k => k.AttorneyContacts).ToList(),
                 Advantage = db.Advantages.Include(a => a.AdvantageDescs).First(),
-                Testimonials = db.Testimonials.ToList()
+                Testimonials = db.Testimonials.ToList(),
+                Practices = db.Practices.ToList(),
+                Blogs = db.Blogs.Include(w => w.BlogWriter).Include(k => k.Practice).ToList()
             };
             return View(home);
         }

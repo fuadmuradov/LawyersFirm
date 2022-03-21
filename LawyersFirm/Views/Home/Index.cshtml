@@ -84,7 +84,21 @@
             </div>
             <!-- /row -->
             <div class="row practice-items-holder">
-                <div class="col-md-6 col-lg-3 practice-item-4cols">
+                @for (int i=0; i<8; i++)
+                {
+
+                    <div class="col-md-6 col-lg-3 practice-item-4cols">
+                        <a asp-controller="Practice" asp-action="Details" asp-route-id="@Model.Practices[i].Id">
+                            <div class="practice-item">
+                                <div class="practice-icon">@Html.Raw(Model.Practices[i].Icon)</div>
+                                <h3 class="practice-title">@Model.Practices[i].Name</h3>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+
+                @*<div class="col-md-6 col-lg-3 practice-item-4cols">
                     <a href="practice-single-page.html">
                         <div class="practice-item">
                             <div class="practice-icon"><i class="fas fa-truck"></i></div>
@@ -147,16 +161,16 @@
                             <h3 class="practice-title">Divorce</h3>
                         </div>
                     </a>
-                </div>
+                </div>*@
             </div>
             <!-- /row -->
-            <div class="view-more alignc margin-t72"><a href="practice-areas.html">View More</a></div>
+            <div class="view-more alignc margin-t72"><a asp-controller="Practice" asp-action="AllPractices">View More</a></div>
         </div>
         <!-- /container -->
     </section>
     <!-- /SECTION 3-->
     <!-- SECTION 4-->
-    <section class="parallax section-holder" style="background-image:url(assets/images/home/home-bkg-1.jpg);">
+    <section class="parallax section-holder" style="background-image:url(../assets/images/home/home-bkg-1.jpg);">
         <div class="container parallax-content">
             <div class="row">
                 <div class="col-lg-8">
@@ -289,7 +303,27 @@
             </div>
             <!-- /row -->
             <div class="row section-home-blog">
-                <div class="col-md-4">
+
+                @for (int i= 0; i < 3; i++)
+                {
+                    <div class="col-md-6 col-lg-4 blog-item-masonry">
+                        <article class="blog-item blog-item-2col-grid">
+                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@Model.Blogs[i].Id">
+                                <div class="post-image"> <img src="~/assets/images/blog/@Model.Blogs[i].Image" class="img-fluid" alt=""></div>
+                            </a>
+                            <div class="post-holder">
+                                <ul class="blog-date">
+                                    <li class="meta-date">@Model.Blogs[i].Date.ToString("MMMM dd, yyyy")</li>
+                                    <li class="meta-categ"><a asp-controller="Practice" asp-action="Details" asp-route-id="@Model.Blogs[i].PracticeId" rel="category tag">@Model.Blogs[i].Practice.Name</a> <a href="#" rel="category tag">News</a></li>
+                                </ul>
+                                <h2 class="blog-title"><a asp-controller="Blog" asp-action="Details" asp-route-id="@Model.Blogs[i].Id">@(Model.Blogs[i].SummaryTitle!=null && Model.Blogs[i].SummaryTitle.Length>40 ? Model.Blogs[i].SummaryTitle.Substring(0,40)+"...": Model.Blogs[i].SummaryTitle )</a></h2>
+                                <div class="article-excerpt"> @(Model.Blogs[i].SummaryDesc!=null && Model.Blogs[i].SummaryDesc.Length>180 ? Model.Blogs[i].SummaryDesc.Substring(0,180)+"...": Model.Blogs[i].SummaryDesc )</div>
+                            </div>
+                        </article>
+                    </div>
+                }
+
+                @*<div class="col-md-4">
                     <article class="blog-item blog-item-2col-grid blog-item-3col-grid">
                         <a href="blog-single-post.html">
                             <div class="post-image"><img src="~/assets/images/blog/blog-1.jpg" class="img-fluid" alt=""></div>
@@ -333,7 +367,7 @@
                             <div class="article-excerpt">Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra.</div>
                         </div>
                     </article>
-                </div>
+                </div>*@
             </div>
             <!-- /row -->
         </div>

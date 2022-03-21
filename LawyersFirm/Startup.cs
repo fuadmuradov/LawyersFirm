@@ -33,11 +33,16 @@ namespace LawyersFirm
             );
 
             services.AddIdentity<AppUser, IdentityRole>(option => {
+                option.SignIn.RequireConfirmedEmail = true;
                 option.Password.RequireDigit = true;
                 option.Password.RequiredLength = 8;
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireUppercase = false;
                 option.Password.RequireLowercase = false;
+
+                option.Lockout.MaxFailedAccessAttempts = 5;
+                option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                option.Lockout.AllowedForNewUsers = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<MyContext>();
         }
 
@@ -75,6 +80,8 @@ namespace LawyersFirm
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
             });
+
+            
 
         }
     }

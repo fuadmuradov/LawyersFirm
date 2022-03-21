@@ -56,8 +56,22 @@
                     <img src="~/assets/images/gravatar.png" class="img-fluid rounded-circle" alt="">
                 </div>
                 <div class="profile-text">
-                    <h6 class="m-0">Naeem Khan</h6>
-                    <span><a href="~/admin/cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="87e2ffe6eaf7ebe2c7e0eae6eeeba9e4e8ea">[email&#160;protected]</a></span>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+
+                        <h6 class="m-0">Admin Panel</h6>
+                    }
+                    else
+                    {
+                        <h6 class="m-0">@User.Identity.Name</h6>
+                      
+                          //  <span><a href="~/admin/cdn-cgi/l/email-protection.html" class="__cf_email__">example@gmail.com</a></span>
+
+                        
+
+
+                    }
+
                 </div>
             </div><!--/.profile element-->
             <form class="search sidebar-form" action="#" method="get">
@@ -230,16 +244,24 @@
                                     </div>
                                     <div class="user-header">
                                         <div class="img-user">
-                                            <img src="~/admin/assets/dist/img/avatar-1.jpg" alt="">
+                                            <img src="~/assets/images/gravatar.png" alt="">
                                         </div><!-- img-user -->
-                                        <h6>Naeem Khan</h6>
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <h6>Admin Panel</h6>
+                                        }
+                                        else
+                                        {
+                                            <h6 >@User.Identity.Name</h6>
+                                        }
+                                       
                                         <span><a href="~/admin/cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="294c51484459454c694e44484045074a4644">[email&#160;protected]</a></span>
                                     </div><!-- user-header -->
-                                    <a href="#" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-                                    <a href="#" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+                                    <a href="\admin/account/edit" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
+                                    <a href="\admin/account/edit" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
                                     <a href="#" class="dropdown-item"><i class="typcn typcn-arrow-shuffle"></i> Activity Logs</a>
                                     <a href="#" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
-                                    <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-key-outline"></i> Sign Out</a>
+                                    <a href="\admin/account/logout" class="dropdown-item"><i class="typcn typcn-key-outline"></i> Sign Out</a>
                                 </div><!--/.dropdown-menu -->
                             </li>
                         </ul><!--/.navbar nav-->

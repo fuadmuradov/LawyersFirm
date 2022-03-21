@@ -13,5 +13,7 @@ namespace LawyersFirm.Models.ViewModel
         public List<Attorney> Attorneys { get; set; }
         public Advantage Advantage { get; set; }
         public List<Testimonial> Testimonials { get; set; }
+        public List<Practice> Practices { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }
