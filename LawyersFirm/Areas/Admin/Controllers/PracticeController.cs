@@ -1,6 +1,7 @@
 ﻿using LawyersFirm.Extensions;
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class PracticeController : Controller
     {
         private readonly MyContext db;
@@ -60,9 +62,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public async Task<IActionResult> PracticeEdit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Practice practice = await db.Practices.FirstOrDefaultAsync(i => i.Id == id);
-            if (practice == null) return NotFound();
+            if (practice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             return View(practice);
         }
@@ -77,7 +79,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
             }
 
             Practice dbpractice = db.Practices.FirstOrDefault(i => i.Id == practice.Id);
-            if (dbpractice == null) return NotFound();
+            if (dbpractice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             if (practice.Photo != null)
             {
@@ -111,9 +113,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult PracticeDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Practice practice = db.Practices.FirstOrDefault(i => i.Id == id);
-            if (practice == null) return NotFound();
+            if (practice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             db.Practices.Remove(practice);
             db.SaveChanges();

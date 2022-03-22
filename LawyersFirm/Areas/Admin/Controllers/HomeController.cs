@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Http;
 using LawyersFirm.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using LawyersFirm.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly MyContext db;
@@ -112,11 +114,11 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //SliderImage Update
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             SliderImage sliderImage = await db.SliderImages.FirstOrDefaultAsync(f => f.Id == id);
 
-            if (sliderImage == null) return NotFound();
+            if (sliderImage == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             return View(sliderImage);
 
@@ -250,9 +252,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public async Task<IActionResult> InfoDescriptionDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             InfoDesc infoDesc = await db.InfoDescs.FirstOrDefaultAsync(i=>i.Id==id);
-            if (infoDesc == null) return NotFound();
+            if (infoDesc == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.InfoDescs.Remove(infoDesc);
             db.SaveChanges();
             return LocalRedirect("/Admin/Home/HomeInfo");
@@ -262,11 +264,11 @@ namespace LawyersFirm.Areas.Admin.Controllers
             //Office Image Delete
             public async Task<IActionResult> DeleteOfficeImage(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             OfficeImage officeImage = await db.OfficeImages.FirstOrDefaultAsync(f => f.Id == id);
 
-            if (officeImage == null) return NotFound();
+            if (officeImage == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             string folder = @"assets\images\home\";
             FileExtension.Delete(webHost.WebRootPath, folder, officeImage.Image);
             db.OfficeImages.Remove(officeImage);
@@ -334,9 +336,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult AdvantageDescDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AdvantageDesc advantageDesc = db.AdvantageDescs.FirstOrDefault(a=>a.Id==id);
-            if (advantageDesc == null) return NotFound();
+            if (advantageDesc == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.AdvantageDescs.Remove(advantageDesc);
             db.SaveChanges();
             return LocalRedirect("/Admin/Home/Advantage");

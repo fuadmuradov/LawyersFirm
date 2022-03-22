@@ -1,4 +1,5 @@
-﻿		<!-- TOP IMAGE assets/images/home/slider-3.jpg -->
+﻿@model AboutVM	
+	<!-- TOP IMAGE assets/images/home/slider-3.jpg -->
 <div class="page-head" style="background-image: url(../assets/images/home/slider-3.jpg);">
     <div class="inner-desc">
         <div class="container">
@@ -15,14 +16,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 margin-bm54">
-                    <img class="img-fluid" src="~/assets/images/home/about-1.jpg" alt="">
+                    <img class="img-fluid" src="~/assets/images/home/@Model.About.Image" alt="">
                 </div>
                 <div class="col-lg-7">
                     <span class="heading-subtitle">30 Years of Experience</span>
-                    <h2 class="section-heading-title margin-b16">We provide solutions to your legal problems</h2>
-                    <p>Lorem ipsum dolor sit amet, ut eius periculis eos, eu mea suscipit intellegam. Tota consequuntur cu pro, congue efficiantur eos id. Ius in percipit recusabo. Has ex agam audire, id dicat dolores.</p>
-                    <p>Vix in erat erant ubique, cum et dicant soluta, postulant mediocrem at mel. Appetere inciderint eloquentiam ne sed. In veri illud erroribus vel, vel ad graeci theophrastus, libris timeam sapientem ex mel. Sed sodales, odio eget adipiscing mattis, sapien purus dapibus felis, sit amet mollis velit dolor eu lorem. Vivamus condimentum nunc a quam lobortis tempus. Integer porttitor, elit vestibulum facilisis accumsan, tortor nisl volutpat sem, ac laoreet ligula metus ut felis.</p>
-                    <img class="img-fluid" src="~/assets/images/about/founder-sign.jpg" alt="" width="250">
+                    <h2 class="section-heading-title margin-b16">@Model.About.Title</h2>
+                    <p>@Model.About.Description</p>
+                    <h4>@Model.About.Writer</h4>
                 </div>
             </div>
             <!-- /row -->
@@ -34,16 +34,31 @@
     <section class="section-holder">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 margin-bm54">
+                @foreach (var item in Model.About.Subjects)
+                {
+                    <div class="col-lg-4 margin-bm54">
+                        <div class="icon-box-wrapper margin-none">
+                            <div class="icon-box-icon"><i class="far fa-lightbulb"></i></div>
+                            <div class="icon-box-content">
+                                <h3>@item.Title</h3>
+                                <p>@item.Desc</p>
+                            </div>
+                        </div>
+                        <!-- /icon-box-wrapper -->
+                    </div>
+                }
+
+
+                <!--<div class="col-lg-4 margin-bm54">
                     <div class="icon-box-wrapper margin-none">
                         <div class="icon-box-icon"><i class="far fa-lightbulb"></i></div>
                         <div class="icon-box-content">
                             <h3>Don't take the risk</h3>
                             <p>Persius vulputate ius in. Mei iuvaret contentiones ne. Prima modus admodum at pri, pri sumo appareat ea. Duo stet vocent alienum ne, at sed veri viderer. Eos tota nominavi an.</p>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /icon-box-wrapper -->
-                </div>
+                <!--</div>
                 <div class="col-lg-4 margin-bm54">
                     <div class="icon-box-wrapper margin-none">
                         <div class="icon-box-icon"><i class="fas fa-gavel"></i></div>
@@ -51,9 +66,9 @@
                             <h3>Legal Expertise</h3>
                             <p>Persius vulputate ius in. Mei iuvaret contentiones ne. Prima modus admodum at pri, pri sumo appareat ea. Duo stet vocent alienum ne, at sed veri viderer. Eos tota nominavi an.</p>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /icon-box-wrapper -->
-                </div>
+                <!--</div>
                 <div class="col-lg-4">
                     <div class="icon-box-wrapper margin-none">
                         <div class="icon-box-icon"><i class="far fa-bell"></i></div>
@@ -61,9 +76,9 @@
                             <h3>Get Started Today</h3>
                             <p>Persius vulputate ius in. Mei iuvaret contentiones ne. Prima modus admodum at pri, pri sumo appareat ea. Duo stet vocent alienum ne, at sed veri viderer. Eos tota nominavi an.</p>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- /icon-box-wrapper -->
-                </div>
+                <!--</div>-->
             </div>
             <!-- /row -->
         </div>
@@ -75,19 +90,19 @@
         <div class="container">
             <div class="row alignc">
                 <div class="col-sm-6 col-lg-3 margin-bm32">
-                    <div class="facts-title white">10k</div>
+                    <div class="facts-title white">@Model.Advantage.CustomerCount</div>
                     <p class="white">Global Customers</p>
                 </div>
                 <div class="col-sm-6 col-lg-3 margin-bm32">
-                    <div class="facts-title white">30</div>
+                    <div class="facts-title white">@Model.Advantage.Experience</div>
                     <p class="white">Years of Experience</p>
                 </div>
                 <div class="col-sm-6 col-lg-3 margin-bm32">
-                    <div class="facts-title white">24</div>
+                    <div class="facts-title white">@Model.Advantage.Expert</div>
                     <p class="white">Team Experts</p>
                 </div>
                 <div class="col-sm-6 col-lg-3 margin-bm32">
-                    <div class="facts-title white">17</div>
+                    <div class="facts-title white">@Model.Advantage.Award</div>
                     <p class="white">Awards & Honors</p>
                 </div>
             </div>
@@ -107,58 +122,26 @@
             </div>
             <!-- /row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-4.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Founder</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Sarah Barrett</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-                        </ul>
+                @for (int i = 0; i < 4; i++)
+                {
+                    int id = Model.Attorneys[i].Id;
+                    <div class="col-lg-3 col-md-6">
+                        <div class="lawyer-holder lawyer-3col">
+                            <a asp-controller="Attorney" asp-action="Details" asp-route-id="@Model.Attorneys[i].Id"><img src="~/assets/images/team/@Model.Attorneys[i].Image" class="img-fluid" alt=""></a>
+                            <div class="lawyer-position">@Model.Attorneys[i].Jobname</div>
+                            <h2 class="lawyer-title"><a asp-controller="Attorney" asp-action="Details" asp-route-id="@Model.Attorneys[i].Id">@Model.Attorneys[i].Fullname</a></h2>
+                            <div class="lawyer-excerpt">@(Model.Attorneys[i].Biography!=null && Model.Attorneys[i].Biography.Length>135 ? Model.Attorneys[i].Biography.Substring(0,135): Model.Attorneys[i].Biography )</div>
+                            <ul class="lawyer-social">
+                                <li><a href="@Model.Attorneys[i].AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==id).Twitter" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="@Model.Attorneys[i].AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==id).Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="@Model.Attorneys[i].AttorneyContacts.FirstOrDefault(i=>i.AttorneyId==id).Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-6.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Senior Partner</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Mike Holmes</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-1.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Lawyer</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Teresa Perkins</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="lawyer-holder lawyer-3col">
-                        <a href="attorneys-single-page.html"><img src="~/assets/images/team/team-5.jpg" class="img-fluid" alt=""></a>
-                        <div class="lawyer-position">Legal Advisor</div>
-                        <h2 class="lawyer-title"><a href="attorneys-single-page.html">Samuel Johnson</a></h2>
-                        <div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-                        <ul class="lawyer-social">
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+                }
+
+
+               
             </div>
             <!-- /row -->
             <div class="badge-wrapper">

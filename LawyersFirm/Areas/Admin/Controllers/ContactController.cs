@@ -1,6 +1,7 @@
 ﻿using LawyersFirm.Extensions;
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize]
     public class ContactController : Controller
     {
         private readonly MyContext db;
@@ -39,7 +41,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Setting dbsetting = db.Settings.FirstOrDefaultAsync(i => i.Id == setting.Id).Result;
-            if (dbsetting == null) return NotFound();
+            if (dbsetting == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             if (setting.Photo != null)
             {

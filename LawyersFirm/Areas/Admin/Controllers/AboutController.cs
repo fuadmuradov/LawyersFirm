@@ -1,6 +1,7 @@
 ﻿using LawyersFirm.Extensions;
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class AboutController : Controller
     {
         private readonly MyContext db;
@@ -97,7 +99,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //Delete Subjects
         public IActionResult SubjectDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Subject subject = db.Subjects.FirstOrDefault(a => a.Id == id);
             db.Subjects.Remove(subject);
             db.SaveChanges();
@@ -193,10 +195,10 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //Price Delete 
         public async Task<IActionResult> PriceDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             Price price = await db.Prices.FirstOrDefaultAsync(i => i.Id == id);
-            if (price == null) return NotFound();
+            if (price == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             List<PriceToPractice> priceToPractices = await db.PriceToPractices.Where(k => k.PriceId == price.Id).ToListAsync();
 
             db.PriceToPractices.RemoveRange(priceToPractices);
@@ -310,7 +312,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
 
             FaqQuestion question = await db.FaqQuestions.FirstOrDefaultAsync(i => i.Id == faqQuestion.Id);
-            if (question == null) return NotFound();
+            if (question == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             question.Question = faqQuestion.Question;
             question.Answer = faqQuestion.Answer;
@@ -324,7 +326,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
         public IActionResult FaqDelete(int? id)
         {
             FaqQuestion question = db.FaqQuestions.FirstOrDefault(k => k.Id == id);
-            if (question == null) return NotFound();
+            if (question == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.FaqQuestions.Remove(question);
             db.SaveChanges();
 
@@ -367,11 +369,11 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //Faq Images Edit
         public async Task<IActionResult> FaqImageEdit(int? id)
         {
-            if (!ModelState.IsValid) return NotFound();
+            if (!ModelState.IsValid) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             FaqImage faqImage = await db.FaqImages.FirstOrDefaultAsync(f => f.Id == id);
 
-            if (faqImage == null) return NotFound();
+            if (faqImage == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             return View(faqImage);
         }
@@ -412,10 +414,10 @@ namespace LawyersFirm.Areas.Admin.Controllers
         // Faq Image Delete
         public async Task<IActionResult> FaqImageDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             FaqImage faqImage = await db.FaqImages.FirstOrDefaultAsync(k => k.Id == id);
 
-            if (faqImage == null) return NotFound();
+            if (faqImage == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             string folder = @"assets\images\cases\";
             FileExtension.Delete(webHost.WebRootPath, folder, faqImage.Image);
@@ -466,9 +468,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult TestimonialEdit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Testimonial testimonial = db.Testimonials.FirstOrDefault(i => i.Id == id);
-            if (testimonial == null) return NotFound();
+            if (testimonial == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             return View(testimonial);
         }
@@ -484,7 +486,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
             }
 
             Testimonial dbtestimonial = db.Testimonials.FirstOrDefault(i => i.Id == testimonial.Id);
-            if (dbtestimonial == null) return NotFound();
+            if (dbtestimonial == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             if (testimonial.Photo != null)
             {
@@ -515,9 +517,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //Testimonials Delete
         public IActionResult TestimonialDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Testimonial testimonial = db.Testimonials.FirstOrDefault(i => i.Id == id);
-            if (testimonial == null) return NotFound();
+            if (testimonial == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             db.Testimonials.Remove(testimonial);
             db.SaveChanges();

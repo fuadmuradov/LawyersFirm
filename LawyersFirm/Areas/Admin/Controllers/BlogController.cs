@@ -1,6 +1,7 @@
 ﻿using LawyersFirm.Extensions;
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly MyContext db;
@@ -55,9 +57,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult BlogWriterEdit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             BlogWriter dbWriter = db.BlogWriters.FirstOrDefault(i => i.Id == id);
-            if (dbWriter == null) return NotFound();
+            if (dbWriter == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             return View(dbWriter);
         }
 
@@ -70,7 +72,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             BlogWriter dbwriter = db.BlogWriters.FirstOrDefaultAsync(i => i.Id == blogWriter.Id).Result;
-            if (dbwriter == null) return NotFound();
+            if (dbwriter == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             if (blogWriter.Photo != null)
             {
@@ -99,9 +101,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult BlogWriterDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             BlogWriter blogWriter = db.BlogWriters.FirstOrDefault(i => i.Id == id);
-            if (blogWriter == null) return NotFound();
+            if (blogWriter == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             List<Blog> blogs = db.Blogs.Where(k => k.BlogWriterId == id).ToList();
             foreach (var item in blogs)
             {
@@ -125,7 +127,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
         #region WRITER BLOGS
         public IActionResult WriterBlogs(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             List<Blog> blogs = db.Blogs.Include(k=>k.BlogWriter).Include(l=>l.Practice).Where(i => i.BlogWriterId == id).ToList();
 
             return View(blogs);
@@ -151,9 +153,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             BlogWriter blogWriter = db.BlogWriters.FirstOrDefault(k => k.Id == blog.BlogWriterId);
-            if (blogWriter == null) return NotFound();
+            if (blogWriter == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Practice practice = db.Practices.FirstOrDefault(k => k.Id == blog.PracticeId);
-            if (practice == null) return NotFound();
+            if (practice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             string folder = @"assets\images/blog\";
             blog.Image = blog.Photo.SavaAsync(webHost.WebRootPath, folder).Result;
             db.Blogs.Add(blog);
@@ -167,9 +169,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult BlogEdit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Blog blog = db.Blogs.FirstOrDefault(i => i.Id == id);
-            if (blog == null) return NotFound();
+            if (blog == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             ViewBag.Practice = db.Practices.ToList();
             ViewBag.BlogWriter = db.BlogWriters.ToList();
             return View(blog);
@@ -184,7 +186,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Blog dbblog = db.Blogs.FirstOrDefaultAsync(i => i.Id == blog.Id).Result;
-            if (dbblog == null) return NotFound();
+            if (dbblog == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             if (blog.Photo != null)
             {
@@ -217,9 +219,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult BlogDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Blog blog = db.Blogs.FirstOrDefault(i => i.Id == id);
-            if (blog == null) return NotFound();
+            if (blog == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             string folder = @"assets\images\blog\";
             FileExtension.Delete(webHost.WebRootPath, folder, blog.Image);
             db.Blogs.Remove(blog);

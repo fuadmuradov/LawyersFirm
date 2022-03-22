@@ -1,9 +1,10 @@
 ﻿@model Case
 @{
     List<Case> cases = ViewBag.Cases;
+    Setting setting = ViewBag.Setting;
 }
 <!-- TOP IMAGE -->
-<div class="page-head " style="background-image:url('images/top-bkgs/case-results.jpg');">
+<div class="page-head " style="background-image: url(/assets/images/top-bkgs/case-results.jpg);">
     <div class="inner-desc">
         <div class="container">
             <h1 class="page-title">Case Single Page</h1>
@@ -56,7 +57,7 @@
                                 </div>
                             </li>
                             <li class="widget">
-                                <div class="practice-contact" style="background-image: url('../assets/images/practice/practice-banner.jpg');"><h5 class="white">Need help?</h5><p>Contact us today for a free consultation and our experts will help you.</p><p><strong>Phone:</strong> 1-800-000-111<br><strong>Email:</strong> contact@example.com</p><p><strong>Mon – Fri:</strong> 09:00 -17:00</p></div>
+                                <div class="practice-contact" style="background-image: url(/assets/images/practice/practice-banner.jpg);"><h5 class="white">Need help?</h5><p>Contact us today for a free consultation and our experts will help you.</p><p><strong>Phone:</strong> 1-800-000-111<br><strong>Email:</strong> contact@example.com</p><p><strong>Mon – Fri:</strong> 09:00 -17:00</p></div>
                             </li>
                         </ul>
                     </aside>
@@ -82,17 +83,17 @@
                 <div class="col-lg-4 alignc">
                     <div class="icon-box-icon margin-none"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="icon-box-title">OFFICE</div>
-                    <p class="icon-box-description">40 Park Ave, Brooklyn, New York</p>
+                    <p class="icon-box-description">@setting.Address</p>
                 </div>
                 <div class="col-lg-4 alignc">
                     <div class="icon-box-icon margin-none"><i class="fas fa-phone-alt"></i></div>
                     <div class="icon-box-title">PHONE</div>
-                    <p class="icon-box-description">1-800-000-111</p>
+                    <p class="icon-box-description">@setting.Phone</p>
                 </div>
                 <div class="col-lg-4 alignc">
                     <div class="icon-box-icon margin-none"><i class="far fa-envelope"></i></div>
                     <div class="icon-box-title">EMAIL</div>
-                    <p class="icon-box-description">contact@example.com</p>
+                    <p class="icon-box-description">@setting.Email</p>
                 </div>
 
             </div>

@@ -31,7 +31,8 @@ namespace LawyersFirm.Controllers
                 Advantage = db.Advantages.Include(a => a.AdvantageDescs).First(),
                 Testimonials = db.Testimonials.ToList(),
                 Practices = db.Practices.ToList(),
-                Blogs = db.Blogs.Include(w => w.BlogWriter).Include(k => k.Practice).ToList()
+                Blogs = db.Blogs.Include(w => w.BlogWriter).Include(k => k.Practice).ToList(),
+                Setting = db.Settings.First()
             };
             return View(home);
         }

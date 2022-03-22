@@ -1,6 +1,7 @@
 ﻿using LawyersFirm.Extensions;
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CaseController : Controller
     {
         private readonly MyContext db;
@@ -45,7 +47,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Category category = db.Categories.FirstOrDefault(k => k.Id == ccase.CategoryId);
-            if (category == null) return NotFound();
+            if (category == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             string folder = @"assets\images\cases\";
             ccase.Image = ccase.Photo.SavaAsync(webHost.WebRootPath, folder).Result;
             db.Cases.Add(ccase);
@@ -57,9 +59,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult CaseEdit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Case ccase = db.Cases.FirstOrDefault(i => i.Id == id);
-            if (ccase == null) return NotFound();
+            if (ccase == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             ViewBag.Category = db.Categories.ToList();
             return View(ccase);
         }
@@ -73,8 +75,8 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Case dbcase = db.Cases.FirstOrDefaultAsync(i => i.Id == ccase.Id).Result;
-            if (dbcase == null) return NotFound();
-            if (!db.Categories.Any(i => i.Id == ccase.CategoryId)) return NotFound();
+            if (dbcase == null) return LocalRedirect("/admin/statuserror/notfoundpage");
+            if (!db.Categories.Any(i => i.Id == ccase.CategoryId)) return LocalRedirect("/admin/statuserror/notfoundpage");
            
             if (ccase.Photo != null)
             {
@@ -109,9 +111,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult CaseDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Case ccase = db.Cases.FirstOrDefault(i => i.Id == id);
-            if (ccase == null) return NotFound();
+            if (ccase == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             string folder = @"assets\images\cases\";
             FileExtension.Delete(webHost.WebRootPath, folder, ccase.Image);
             db.Cases.Remove(ccase);

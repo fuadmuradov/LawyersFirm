@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LawyersFirm.Models.DbTables;
 using Microsoft.EntityFrameworkCore;
+using LawyersFirm.Models.ViewModel;
 
 namespace LawyersFirm.Controllers
 {
@@ -20,12 +21,18 @@ namespace LawyersFirm.Controllers
 
         public IActionResult About()
         {
-         
-            return View();
+            AboutVM aboutVM = new AboutVM()
+            {
+                About = db.Abouts.Include(s=>s.Subjects).First(),
+                Advantage = db.Advantages.Include(l=>l.AdvantageDescs).First(),
+                Attorneys = db.Attorneys.Include(a=>a.AttorneyContacts).ToList()
+            };
+            return View(aboutVM);
         }
         //Okay
         public IActionResult Testimonial()
         {
+            ViewBag.Setting = db.Settings.First();
             List<LawyersFirm.Models.DbTables.Testimonial> testimonials = db.Testimonials.ToList();
             return View(testimonials);
         }

@@ -25,6 +25,7 @@ namespace LawyersFirm.Controllers
 
         public IActionResult Details(int? id)
         {
+            ViewBag.Setting = db.Settings.First();
             if (id == null) id = db.Cases.First().Id;
             Case cases =  db.Cases.Include(c => c.Category).FirstOrDefault(i => i.Id == id);
            

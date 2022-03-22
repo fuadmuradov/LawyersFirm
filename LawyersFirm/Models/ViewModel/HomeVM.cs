@@ -15,5 +15,6 @@ namespace LawyersFirm.Models.ViewModel
         public List<Testimonial> Testimonials { get; set; }
         public List<Practice> Practices { get; set; }
         public List<Blog> Blogs { get; set; }
+        public Setting Setting { get; set; }
     }
 }

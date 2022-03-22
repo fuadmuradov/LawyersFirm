@@ -2,6 +2,7 @@
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
 using LawyersFirm.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace LawyersFirm.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class AttorneyController : Controller
     {
         private readonly MyContext db;
@@ -89,12 +91,12 @@ namespace LawyersFirm.Areas.Admin.Controllers
         public async Task<IActionResult> AttorneyEdit(int? id)
         {
 
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Attorney attorney = await db.Attorneys.FirstOrDefaultAsync(i => i.Id == id);
 
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyContact attorneyContact = db.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == id);
-            if (attorneyContact == null) return NotFound();
+            if (attorneyContact == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
             AttorneyContactVM attorneyContactVM = new AttorneyContactVM()
             {
@@ -125,7 +127,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
             }
 
             Attorney dbattorney = db.Attorneys.FirstOrDefault(i => i.Id == attorneyContactVM.AttorneyId);
-            if (dbattorney == null) return NotFound();
+            if (dbattorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyContact dbattorneyContact = db.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == dbattorney.Id);
 
 
@@ -165,9 +167,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public IActionResult AttorneyDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Attorney attorney = db.Attorneys.FirstOrDefault(i => i.Id == id);
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyContact attorneyContact = db.AttorneyContacts.FirstOrDefault(i => i.AttorneyId == attorney.Id);
             List<AttorneyAward> attorneyAward = db.AttorneyAwards.Where(k => k.AttorneyId == attorney.Id).ToList();
             List<AttorneyPractice> attorneyPractice = db.AttorneyPractices.Where(k => k.AttorneyId == attorney.Id).ToList();
@@ -210,7 +212,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Attorney attorney = db.Attorneys.FirstOrDefault(k=>k.Id==attorneyAward.AttorneyId);
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.AttorneyAwards.Add(attorneyAward);
             await db.SaveChangesAsync();
 
@@ -221,9 +223,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
         public IActionResult AttorneyAwardEdit(int? id)
         {
             ViewBag.Attorney = db.Attorneys.ToList();
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyAward attorneyAward = db.AttorneyAwards.FirstOrDefault(k => k.Id == id);
-            if (attorneyAward == null) return NotFound();
+            if (attorneyAward == null) return LocalRedirect("/admin/statuserror/notfoundpage");
            
 
             return View(attorneyAward);
@@ -238,9 +240,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
             }
 
             AttorneyAward attorneyAward1 = await db.AttorneyAwards.FirstOrDefaultAsync(k => k.Id == attorneyAward.Id);
-            if (attorneyAward1 == null) return NotFound();
+            if (attorneyAward1 == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Attorney attorney = await db.Attorneys.FirstOrDefaultAsync(i=>i.Id==attorneyAward.AttorneyId);
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             attorneyAward1.Name = attorneyAward.Name;
             attorneyAward1.AttorneyId = attorneyAward.AttorneyId;
              await db.SaveChangesAsync();
@@ -252,9 +254,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public async Task<IActionResult> AttorneyAwardDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyAward attorneyAward = db.AttorneyAwards.FirstOrDefault(k => k.Id == id);
-            if (attorneyAward == null) return NotFound();
+            if (attorneyAward == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.AttorneyAwards.Remove(attorneyAward);
             await db.SaveChangesAsync();
 
@@ -290,7 +292,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 return View();
             }
             Attorney attorney = db.Attorneys.FirstOrDefault(k => k.Id == attorneyPractice.AttorneyId);
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.AttorneyPractices.Add(attorneyPractice);
             await db.SaveChangesAsync();
 
@@ -302,9 +304,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
         public IActionResult AttorneyPracticeEdit(int? id)
         {
             ViewBag.Attorney = db.Attorneys.ToList();
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyPractice attorneyPractice = db.AttorneyPractices.FirstOrDefault(k => k.Id == id);
-            if (attorneyPractice == null) return NotFound();
+            if (attorneyPractice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
 
 
             return View(attorneyPractice);
@@ -319,9 +321,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
             }
 
             AttorneyPractice attorneyPractice1 = await db.AttorneyPractices.FirstOrDefaultAsync(k => k.Id == attorneyPractice.Id);
-            if (attorneyPractice1 == null) return NotFound();
+            if (attorneyPractice1 == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             Attorney attorney = await db.Attorneys.FirstOrDefaultAsync(i => i.Id == attorneyPractice.AttorneyId);
-            if (attorney == null) return NotFound();
+            if (attorney == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             attorneyPractice1.Name = attorneyPractice.Name;
             attorneyPractice1.AttorneyId = attorneyPractice.AttorneyId;
             await db.SaveChangesAsync();
@@ -333,9 +335,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         public async Task<IActionResult> AttorneyPracticeDelete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             AttorneyPractice attorneyPractice = db.AttorneyPractices.FirstOrDefault(k => k.Id == id);
-            if (attorneyPractice == null) return NotFound();
+            if (attorneyPractice == null) return LocalRedirect("/admin/statuserror/notfoundpage");
             db.AttorneyPractices.Remove(attorneyPractice);
             await db.SaveChangesAsync();
 
