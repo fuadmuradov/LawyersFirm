@@ -1,0 +1,41 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "AllAdmin";
+}
+
+<!--Table-->
+<div class="card-body">
+    <div class=table-responsive>
+        <!--<table class="table table-sm table-nowrap card-table">-->
+        <label class="font-weight-600">User Information</label>
+        <table class="table display table-bordered table-striped table-hover bg-white m-0 card-table">
+            <thead>
+                <tr>
+                    <th>FUllname</th>
+                    <th> Username </th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        
+                      
+
+                        <td>@(item.FirstName + " " + item.LastName)</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+
+                        <td>
+                            <a asp-controller="Account" asp-action="DeleteAdmin" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-danger-soft btn-sm"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--End Table-->

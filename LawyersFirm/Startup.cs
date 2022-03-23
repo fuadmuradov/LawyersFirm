@@ -1,5 +1,6 @@
 using LawyersFirm.Models;
 using LawyersFirm.Models.DbTables;
+using LawyersFirm.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,8 @@ namespace LawyersFirm
             services.AddDbContext<MyContext>(option => 
                 option.UseSqlServer(Configuration.GetConnectionString("LawyerFirmDefault"))
             );
+
+            services.AddScoped<LayoutServices>();
 
             services.AddIdentity<AppUser, IdentityRole>(option => {
                 option.SignIn.RequireConfirmedEmail = true;

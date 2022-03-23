@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@inject LawyersFirm.Services.LayoutServices layoutService
+<!doctype html>
 <html lang="en">
 
 <!-- Mirrored from bhulua.thememinister.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Oct 2019 13:06:42 GMT -->
@@ -64,12 +65,6 @@
                     else
                     {
                         <h6 class="m-0">@User.Identity.Name</h6>
-                      
-                          //  <span><a href="~/admin/cdn-cgi/l/email-protection.html" class="__cf_email__">example@gmail.com</a></span>
-
-                        
-
-
                     }
 
                 </div>
@@ -98,14 +93,14 @@
                         <li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-chart-pie-outline mr-2"></i>
-                               About
+                                About
                             </a>
                             <ul class="nav-second-level">
                                 <li><a href="/admin/About/AboutUs">About Us</a></li>
                                 <li><a href="/admin/About/Pricing">Pricing</a></li>
                                 <li><a href="/admin/About/FaqPage">FAQ</a></li>
                                 <li><a href="/admin/About/Testimonial">Testimonial</a></li>
-                             
+
                             </ul>
                         </li>
                         <li>
@@ -125,11 +120,11 @@
                                 Attorney
                             </a>
                             <ul class="nav-second-level">
-                                        <li><a href="/admin/Attorney/AttorneyPage">Attorney Page</a></li>
-                                        <li><a href="/admin/Attorney/AttorneyAward">Attorney Award</a></li>
-                                        <li><a href="/admin/Attorney/AttorneyPractice">Attorney Practice</a></li>
-                                    </ul>
-                          </li>
+                                <li><a href="/admin/Attorney/AttorneyPage">Attorney Page</a></li>
+                                <li><a href="/admin/Attorney/AttorneyAward">Attorney Award</a></li>
+                                <li><a href="/admin/Attorney/AttorneyPractice">Attorney Practice</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-clipboard mr-2"></i>
@@ -162,20 +157,16 @@
 
                             </ul>
                         </li>
-                       
+
                         <li>
                             <a class="has-arrow material-ripple" href="#">
                                 <i class="typcn typcn-book mr-2"></i>
                                 Authentication
                             </a>
                             <ul class="nav-second-level">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="user_profile.html">Profile</a></li>
-                                <li><a href="forget_password.html">Forget password</a></li>
-                                <li><a href="lockscreen.html">Lockscreen</a></li>
-                                <li><a href="404.html">404 Error</a></li>
-                                <li><a href="505.html">505 Error</a></li>
+                                <li><a asp-controller="Account" asp-action="Login" asp-area="Admin">Login</a></li>
+                                <li><a  asp-controller="Account" asp-action="Register" asp-area="Admin">Register</a></li>
+                                <li><a  asp-controller="Account" asp-action="Edit" asp-area="Admin">Profile</a></li>
                             </ul>
                         </li>
 
@@ -192,45 +183,34 @@
                     </div><!--/.sidebar toggle icon-->
                     <div class="d-flex flex-grow-1">
                         <ul class="navbar-nav flex-row align-items-center ml-auto">
-                     
+
                             <li class="nav-item dropdown notification">
                                 <a class="nav-link dropdown-toggle badge-dot" href="#" data-toggle="dropdown">
                                     <i class="typcn typcn-bell"></i>
                                 </a>
+
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <h6 class="notification-title">Notifications</h6>
-                                    <p class="notification-text">You have 2 unread notification</p>
+                                    <p class="notification-text">You have @layoutService.getNotificationList().Count unread notification</p>
                                     <div class="notification-list">
-                                        <div class="media new">
-                                            <div class="img-user"><img src="~/admin/assets/dist/img/avatar.png" alt=""></div>
-                                            <div class="media-body">
-                                                <h6>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</h6>
-                                                <span>Mar 15 12:32pm</span>
-                                            </div>
-                                        </div><!--/.media -->
-                                        <div class="media new">
-                                            <div class="img-user online"><img src="~/admin/assets/dist/img/avatar2.png" alt=""></div>
-                                            <div class="media-body">
-                                                <h6><strong>Joyce Chua</strong> just created a new blog post</h6>
-                                                <span>Mar 13 04:16am</span>
-                                            </div>
-                                        </div><!--/.media -->
-                                        <div class="media">
-                                            <div class="img-user"><img src="~/admin/assets/dist/img/avatar3.png" alt=""></div>
-                                            <div class="media-body">
-                                                <h6><strong>Althea Cabardo</strong> just created a new blog post</h6>
-                                                <span>Mar 13 02:56am</span>
-                                            </div>
-                                        </div><!--/.media -->
-                                        <div class="media">
-                                            <div class="img-user"><img src="~/admin/assets/dist/img/avatar4.png" alt=""></div>
-                                            <div class="media-body">
-                                                <h6><strong>Adrian Monino</strong> added new comment on your photo</h6>
-                                                <span>Mar 12 10:40pm</span>
-                                            </div>
-                                        </div><!--/.media -->
+                                        @{
+                                            int count = layoutService.getNotificationList().Count;
+                                            if (layoutService.getNotificationList().Count > 6) count = 6;
+                                        }
+                                        @for (int i = 0; i < count; i++)
+                                        {
+                                            <div class="media new">
+                                                <div class="img-user"><img src="~/admin/assets/dist/img/avatar.png" alt=""></div>
+                                                <div class="media-body">
+                                                    <h6><strong>@layoutService.getNotificationList()[i].Subject</strong></h6>
+                                                    <span>@layoutService.getNotificationList()[i].Email</span>
+                                                </div>
+                                            </div><!--/.media -->
+                                        }
+
+
                                     </div><!--/.notification -->
-                                    <div class="dropdown-footer"><a href="#">View All Notifications</a></div>
+                                    <div class="dropdown-footer"><a asp-controller="Notification" asp-action="Index" asp-area="Admin">View All Notifications</a></div>
                                 </div><!--/.dropdown-menu -->
                             </li><!--/.dropdown-->
                             <li class="nav-item dropdown user-menu">
@@ -246,21 +226,24 @@
                                         <div class="img-user">
                                             <img src="~/assets/images/gravatar.png" alt="">
                                         </div><!-- img-user -->
+
+
                                         @if (!User.Identity.IsAuthenticated)
                                         {
                                             <h6>Admin Panel</h6>
                                         }
                                         else
                                         {
-                                            <h6 >@User.Identity.Name</h6>
+
+                                            <h6>@User.Identity.Name</h6>
                                         }
-                                       
-                                        <span><a href="~/admin/cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="294c51484459454c694e44484045074a4644">[email&#160;protected]</a></span>
+
+
                                     </div><!-- user-header -->
                                     <a href="\admin/account/edit" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
                                     <a href="\admin/account/edit" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
-                                    <a href="#" class="dropdown-item"><i class="typcn typcn-arrow-shuffle"></i> Activity Logs</a>
-                                    <a href="#" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
+                                    <a href="\admin/account/AllAdmin" class="dropdown-item"><i class="typcn typcn-arrow-shuffle"></i>Manage Admins</a>
+                                    <a href="\admin/account/Register" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Register Admin</a>
                                     <a href="\admin/account/logout" class="dropdown-item"><i class="typcn typcn-key-outline"></i> Sign Out</a>
                                 </div><!--/.dropdown-menu -->
                             </li>
@@ -287,7 +270,7 @@
                             <div class="header-icon text-success mr-3"><i class="typcn typcn-spiral"></i></div>
                             <div class="media-body">
                                 <h1 class="font-weight-bold">Lawyer Admin Panel</h1>
-                               
+
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,65 @@
+﻿@model Notification
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="body-content">
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card center-block mb-5" style="width:50rem;">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group" name="messageForm">
+                            <label asp-for="@Model.Fullname" class="font-weight-600">FullName</label>
+                            <input asp-for="@Model.Fullname" class="form-control" id="exampleFormControlInput1" readonly="@true">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Email" class="font-weight-600">Email</label>
+                            <input asp-for="@Model.Email" class="form-control" id="exampleFormControlInput1" readonly="@true">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Subject" class="font-weight-600">Subject</label>
+                            <input asp-for="@Model.Subject" class="form-control" id="exampleFormControlInput1" readonly="@true">
+                        </div>
+                        <div class="control">
+                            <label asp-for="@Model.Message" class="font-weight-600">Message</label>
+                            <textarea id="textarea" asp-for="Message" class="e-textarea form-control" readonly="@true" name="text"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Script{ 
+
+    <script>
+
+        $("[name='messageForm']").validate({
+            rules: {
+                text: {
+                    required: true,
+                    minlength: 8
+                }
+            },
+            messages: {
+                text: {
+                    required: "Enter the value"
+                }
+            }
+        });
+
+        $.validator.setDefaults({
+            ignore: [],
+            errorClass: 'e-validation-error',
+            errorPlacement: function (error, element) {
+                $(error).insertAfter(element.closest(".e-textarea"));
+            }
+        });
+    </script>
+
+
+}

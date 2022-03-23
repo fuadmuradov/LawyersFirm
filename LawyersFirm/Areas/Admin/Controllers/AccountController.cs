@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
-
+using LawyersFirm.Models;
 
 namespace LawyersFirm.Areas.Admin.Controllers
 {
@@ -19,12 +19,14 @@ namespace LawyersFirm.Areas.Admin.Controllers
     [Route("Admin/[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly MyContext db;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(MyContext db,UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
+            this.db = db;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
@@ -54,6 +56,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //    await userManager.AddToRoleAsync(user, "SuperAdmin");
         //}
 
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Register()
         {
             return View();
@@ -61,6 +64,7 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Register(RegisterVM register)
         {
             if (!ModelState.IsValid) return View();
@@ -73,6 +77,17 @@ namespace LawyersFirm.Areas.Admin.Controllers
                 Email = register.Email,
 
             };
+
+            AppUser user1 = await userManager.FindByEmailAsync(user.Email);
+            if(user1 != null)
+            {
+                ModelState.AddModelError("", "This Emali Already Exist");
+                return View();
+            }
+
+            AppUser user2 =await userManager.FindByNameAsync(user.UserName);
+            if (user2 != null) user.UserName = user.UserName + "_";
+
 
             IdentityResult result = await userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
@@ -111,12 +126,9 @@ namespace LawyersFirm.Areas.Admin.Controllers
             smtp.Credentials = new NetworkCredential("hrmshrms2000@gmail.com", "hrms12345");
             smtp.Send(mail);
 
-
-
-
             TempData["Verify"] = true;
 
-            return LocalRedirect("/Admin/Account/Login");
+            return LocalRedirect("/Admin/Home/Slider");
         } 
 
         public async Task<IActionResult> VerifyEmail(string email, string token)
@@ -190,6 +202,11 @@ namespace LawyersFirm.Areas.Admin.Controllers
         //    return Content(User.Identity.Name);
         //}
 
+
+
+
+
+        //******************************************************EDIT*********************************************
         [Authorize]
         public async Task<IActionResult> Edit()
         {
@@ -370,6 +387,22 @@ namespace LawyersFirm.Areas.Admin.Controllers
 
 
             return RedirectToAction(nameof(Login), "Account");
+        }
+
+        [Authorize(Roles = "SuperAdmin")]
+        public IActionResult AllAdmin()
+        {
+            List<AppUser> users = db.Users.ToList();
+            return View(users);
+        }
+
+        [Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> DeleteAdmin(string id)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+            await userManager.DeleteAsync(user);
+            return LocalRedirect("/Admin/Account/AllAdmin");
         }
 
     }
